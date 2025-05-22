@@ -1,10 +1,12 @@
 "use client"; // <-- Pastikan ini ada di baris paling atas file Anda
 
 import React, { useRef, useEffect } from "react";
+import Image from "next/image"; // <-- Import komponen Image dari next/image
 import { gsap } from "gsap"; // Import GSAP library
 
 export default function HeroSection() {
-  const mainRef = useRef(null); // Ref untuk elemen <main> (untuk animasi background)
+  const mainRef = useRef(null); // Ref untuk elemen <main> sebagai container
+  const imageRef = useRef(null); // <-- Ref baru untuk komponen Image
   const overlayRef = useRef(null); // Ref untuk overlay gelap
   const headlineRef = useRef(null); // Ref untuk elemen <h1>
   const descriptionRef = useRef(null); // Ref untuk elemen <p> deskripsi
@@ -13,27 +15,27 @@ export default function HeroSection() {
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    // Animasi Latar Belakang (background) muncul (fade-in) dan zoom-in secara bersamaan dari keadaan blank
+    // Animasi Latar Belakang (menggunakan Image component)
     tl.fromTo(
-      mainRef.current,
-      { opacity: 0, scale: 1.05 }, // MULAI DARI: benar-benar transparan (opacity: 0) dan sedikit diperbesar (scale: 1.05)
-      { opacity: 1, scale: 1, duration: 2, ease: "expo.out" } // MENUJU KE: sepenuhnya terlihat (opacity: 1) dan skala normal (scale: 1)
+      imageRef.current, // <-- Target animasi sekarang adalah Image component
+      { opacity: 0, scale: 1.05 }, // Mulai dari transparan dan sedikit zoom in
+      { opacity: 1, scale: 1, duration: 2, ease: "expo.out" } // Fade-in dan kembali ke skala normal
     );
 
-    // Animasi Overlay: Fade-in secara bersamaan dengan animasi background (mainRef)
+    // Animasi Overlay: Fade-in secara bersamaan dengan animasi background
     tl.fromTo(
       overlayRef.current,
-      { opacity: 0 }, // Overlay mulai dari transparan
-      { opacity: 1, duration: 2 },
-      "<" // <-- Target opacity diubah menjadi 0.7 agar lebih terlihat
+      { opacity: 0 },
+      { opacity: 1, duration: 1 },
+      "<"
     );
 
     // Animasi Headline (h1)
     tl.fromTo(
       headlineRef.current,
-      { opacity: 0, y: 50 }, // Mulai dari tidak terlihat dan sedikit di bawah
+      { opacity: 0, y: 50 },
       { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" },
-      "+=0.5" // Dimulai 0.5 detik setelah animasi background/overlay selesai
+      "+=0.1"
     );
 
     // Animasi Paragraf Deskripsi (p)
@@ -41,7 +43,7 @@ export default function HeroSection() {
       descriptionRef.current,
       { opacity: 0, y: 30 },
       { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-      "+=0.2" // Dimulai 0.2 detik setelah headline
+      "+=0.2"
     );
 
     // Animasi Tombol CTA (button)
@@ -49,9 +51,9 @@ export default function HeroSection() {
       ctaRef.current,
       { opacity: 0, scale: 0.8 },
       { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)" },
-      "+=0.2" // Dimulai 0.2 detik setelah deskripsi, dengan efek 'memantul'
+      "+=0.2"
     );
-  }, []);
+  }, []); // Array dependensi kosong memastikan efek hanya berjalan sekali saat komponen di-mount
 
   return (
     <>
@@ -59,23 +61,30 @@ export default function HeroSection() {
       <div className="min-h-screen bg-gray-900 text-white font-open-sans">
         {/* Hero Section */}
         <main
-          ref={mainRef}
-          className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden opacity-0 scale-105"
-          style={{
-            backgroundImage: "url('/bodyguard.jpg')", // Ganti dengan URL gambar background Anda
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
+          ref={mainRef} // Ref untuk kontainer utama section
+          className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden" // opacity-0 dan scale-105 dihapus dari sini
         >
-          {/* Overlay Gelap - Hapus bg-black/10, biarkan gradien dan opacity yang bekerja */}
+          {/* Komponen Image dari Next.js sebagai Background */}
+          <Image
+            ref={imageRef} // <-- Hubungkan ref ke Image component
+            src="/bodyguard.jpg" // <-- Path ke gambar background Anda
+            alt="Security Background" // Deskripsi alt text yang relevan
+            priority // Gunakan priority untuk gambar LCP (Largest Contentful Paint)
+            fill // Properti 'fill' akan membuat gambar mengisi elemen parent-nya secara absolut
+            style={{ objectFit: "cover" }} // Pastikan gambar menutupi area tanpa terdistorsi
+            className="z-0 opacity-0 scale-105" // <-- Kondisi awal untuk animasi (z-index terendah)
+          />
+
+          {/* Overlay Gelap */}
           <div
             ref={overlayRef}
-            className="absolute inset-0 bg-gradient-to-b from-black/20 to-black"
+            // z-index ditingkatkan agar di atas gambar background, dan opacity-0 untuk animasi
+            className="absolute inset-0 bg-gradient-to-b from-black/20 to-black z-[1] opacity-0"
           ></div>
 
           {/* Konten Hero */}
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 items-center">
+          {/* z-index ditingkatkan agar di atas overlay */}
+          <div className="relative z-[2] container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 items-center">
             {/* Kolom Teks */}
             <div className="text-center md:text-left">
               <h1

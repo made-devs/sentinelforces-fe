@@ -1,6 +1,13 @@
-"use client"; // uncomment jika ada interaktivitas atau hooks spesifik client
+"use client"; // Karena komponen ini mungkin memiliki interaktivitas atau hooks spesifik client di masa depan.
+
+import React from "react";
+import Image from "next/image"; // <-- Import Image component
 
 export default function JourneySection() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <section className="bg-white py-16 lg:py-24 text-neutral-800">
       {" "}
@@ -16,14 +23,16 @@ export default function JourneySection() {
             </div>
 
             <div className="mt-8">
-              {/* Placeholder untuk gambar limosin */}
-              <img
+              {/* Mengganti <img> dengan <Image /> */}
+              <Image
                 src="/hero.webp" // Ganti dengan URL gambar limosin Anda
-                alt="Limosin Mewah"
-                className="w-full h-auto rounded-lg shadow-lg object-cover"
+                alt="Limosin Mewah" // Deskripsi alt text yang relevan
+                width={600} // <-- Tetapkan lebar intrinsik gambar Anda
+                height={350} // <-- Tetapkan tinggi intrinsik gambar Anda
+                className="w-full h-auto rounded-lg shadow-lg object-cover" // Kelas tetap sama untuk styling responsif
                 onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src =
+                  // Ganti src gambar ke placeholder jika terjadi error
+                  e.currentTarget.src =
                     "https://placehold.co/600x350/e2e8f0/333333?text=Gagal+Memuat+Gambar";
                 }}
               />

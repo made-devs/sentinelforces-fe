@@ -1,12 +1,15 @@
 "use client";
 
+import React from "react";
+import Image from "next/image"; // <-- Import Image component
+
 export default function JasaSection() {
   const servicesData = [
     {
       name: "Security",
       description:
         "Solusi keamanan terpercaya untuk perjalanan Anda, dari tur kota hingga transfer bandara, memastikan kenyamanan dan dan perlindungan optimal.",
-      image: "security.webp",
+      image: "/security.webp", // <-- Path telah diperbaiki: Ditambahkan tanda '/' di depan
       features: [
         "Petugas Keamanan Profesional",
         "Selalu Tepat Waktu & Efisien",
@@ -61,14 +64,8 @@ export default function JasaSection() {
   };
 
   return (
-    <section
-      // Hapus py-16 lg:py-24, ganti dengan pt-16 lg:pt-24 saja
-      className="relative min-h-screen bg-white pt-16 lg:pt-24 text-neutral-800 font-open-sans"
-    >
-      <div
-        // Tambahkan pb-16 lg:pb-24 ke container konten utama
-        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-16 lg:pb-24"
-      >
+    <section className="relative min-h-screen bg-white pt-16 lg:pt-24 text-neutral-800 font-open-sans">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-16 lg:pb-24">
         <p className="text-sm text-center font-semibold text-yellow-500 tracking-wider mb-3 uppercase">
           Layanan Kami
         </p>
@@ -83,15 +80,17 @@ export default function JasaSection() {
                 key={index}
                 className="bg-orange-50 rounded-lg shadow-xl overflow-hidden flex flex-col items-center p-6"
               >
-                <div className="relative w-full mb-6">
-                  <img
+                <div className="relative w-full h-40 mb-6 rounded-md overflow-hidden">
+                  <Image
                     src={service.image}
                     alt={service.name}
-                    className="w-full h-40 object-cover rounded-md"
+                    fill // <-- Gunakan prop fill
+                    style={{ objectFit: "cover" }} // <-- Pastikan objectFit: 'cover'
+                    // Menambahkan onError handler untuk komponen Image
                     onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src =
-                        "https://placehold.co/400x250/e2e8f0/333333?text=Gagal+Memuat";
+                      // Ganti src gambar ke placeholder umum jika terjadi error
+                      // Pastikan Anda memiliki file /placeholder-image.webp di folder public
+                      e.currentTarget.src = "/placeholder-image.webp";
                     }}
                   />
                 </div>
@@ -161,10 +160,12 @@ export default function JasaSection() {
 
       {/* Gambar border-white.webp disisipkan di sini */}
       <div className="absolute bottom-[-3rem] left-0 w-full z-10">
-        <img
+        <Image
           src="/border-white.webp" // Pastikan path ini benar ke file Anda di folder public
-          alt="Section Divider"
-          className="w-full h-auto block"
+          alt="Section Divider" // Deskripsi gambar untuk aksesibilitas
+          width={1920} // <-- Sesuaikan lebar intrinsik gambar border Anda (contoh)
+          height={100} // <-- Sesuaikan tinggi intrinsik gambar border Anda (contoh)
+          className="w-full h-auto block" // w-full untuk lebar penuh, h-auto untuk menjaga rasio aspek
         />
       </div>
     </section>
