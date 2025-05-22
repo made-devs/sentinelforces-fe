@@ -85,7 +85,7 @@ export default function TestimonialsSection() {
                 className="bg-orange-50 p-8 rounded-lg drop-shadow-xl flex flex-col justify-between min-h-[350px]"
               >
                 <p className="text-gray-800 text-lg italic mb-3 flex-grow text-left">
-                  "{testimonial.quote}"
+                  &quot;{testimonial.quote}&quot;
                 </p>
 
                 <div className="flex flex-col items-center">
