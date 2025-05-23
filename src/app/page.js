@@ -1,12 +1,11 @@
-import HeroSection from "@/components/HeroSection";
-import JasaSection from "@/components/JasaSection";
-import JourneySection from "@/components/JourneySection";
-import Navbar from "@/components/Navbar";
-import ServicesSection from "@/components/MengapaKamiSection";
-import WorkProcessSection from "@/components/WorkProcessSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import CTASection from "@/components/CTASection";
-import Footer from "@/components/Footer";
+import HeroSection from '@/components/HeroSection';
+import LayananSection from '@/components/LayananSection';
+import JourneySection from '@/components/JourneySection';
+import Navbar from '@/components/Navbar';
+import ServicesSection from '@/components/MengapaKamiSection';
+import WorkProcessSection from '@/components/WorkProcessSection';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import Footer from '@/components/Footer';
 
 export default function HomePage() {
   return (
@@ -15,7 +14,7 @@ export default function HomePage() {
       <HeroSection />
       <ServicesSection />
       <JourneySection />
-      <JasaSection />
+      <LayananSection />
       <WorkProcessSection />
       <TestimonialsSection />
 

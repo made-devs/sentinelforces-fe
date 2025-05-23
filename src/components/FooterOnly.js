@@ -5,44 +5,13 @@ import Link from 'next/link'; // <-- Import Link dari next/link
 import Image from 'next/image'; // <-- Import Image dari next/image
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
-export default function Footer() {
+export default function FooterOnly() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer
-      className="relative overflow-hidden py-16 lg:py-20 text-gray-300 font-open-sans"
-      style={{
-        backgroundImage: "url('/hero.webp')", // Gambar background
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
-      <div className="absolute inset-0 z-[1] bg-[linear-gradient(to_bottom,rgba(0,0,0,0.6),rgba(0,0,0,0.7),rgba(0,0,0,0.9),rgba(0,0,0,1))]"></div>
-
-      {/* Bagian Panggilan Aksi Akhir (CTA Section) */}
-      <div className="relative z-[2] py-16 lg:py-24 text-center mb-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-plus-jakarta-sans mb-6">
-            Siap untuk Merasa Aman dan Terlindungi?
-          </h2>
-          <p className="text-lg text-gray-300 mb-10 max-w-3xl mx-auto">
-            Hubungi kami hari ini untuk konsultasi gratis dan temukan solusi
-            keamanan profesional yang tepat untuk kebutuhan personal atau bisnis
-            Anda.
-          </p>
-          {/* Menggunakan Link untuk navigasi internal */}
-          <Link
-            href="/kontak"
-            className="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-plus-jakarta-sans font-semibold text-lg py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-          >
-            HUBUNGI SENTINEL FORCES
-          </Link>
-        </div>
-      </div>
-
+    <footer>
       {/* Konten Footer Utama */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-[2]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-[2]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center md:text-left">
           {/* Kolom 1: Logo & Tagline */}
           <div className="flex flex-col items-center md:items-start">
@@ -123,10 +92,10 @@ export default function Footer() {
               <li>
                 Telepon: {/* <a> untuk link eksternal (tel:) tetap digunakan */}
                 <a
-                  href="tel:+62822100000522"
+                  href="tel:+6281234567890"
                   className="hover:text-yellow-400 transition-colors duration-300"
                 >
-                  +62 822-1000-00522
+                  +62 812-3456-7890
                 </a>
               </li>
               <li>
@@ -136,13 +105,10 @@ export default function Footer() {
                   href="mailto:info@sentinelforces.com"
                   className="hover:text-yellow-400 transition-colors duration-300"
                 >
-                  sentinelforces01@gmail.com
+                  info@sentinelforces.com
                 </a>
               </li>
-              <li>
-                Alamat: Jl. Bypass Ngurah Rai no 18x Tuban, Kuta Selatan,
-                Badung, Bali.{' '}
-              </li>
+              <li>Alamat: Jakarta, Indonesia</li>
             </ul>
           </div>
 

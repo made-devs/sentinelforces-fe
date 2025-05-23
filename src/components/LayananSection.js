@@ -1,66 +1,66 @@
-"use client";
+'use client';
 
-import React from "react";
-import Image from "next/image"; // <-- Import Image component
+import React from 'react';
+import Image from 'next/image'; // <-- Import Image component
 
-export default function JasaSection() {
+export default function Layanan() {
   const servicesData = [
     {
-      name: "Security",
+      name: 'Security',
       description:
-        "Solusi keamanan terpercaya untuk perjalanan Anda, dari tur kota hingga transfer bandara, memastikan kenyamanan dan dan perlindungan optimal.",
-      image: "/security.webp", // <-- Path telah diperbaiki: Ditambahkan tanda '/' di depan
+        'Solusi keamanan terpercaya untuk perjalanan Anda, dari tur kota hingga transfer bandara, memastikan kenyamanan dan dan perlindungan optimal.',
+      image: '/security.webp', // <-- Path telah diperbaiki: Ditambahkan tanda '/' di depan
       features: [
-        "Petugas Keamanan Profesional",
-        "Selalu Tepat Waktu & Efisien",
-        "Pengawalan Door-To-Door",
-        "Pengalaman Keamanan Personal",
-        "Prioritas Privasi & Keamanan",
+        'Petugas Keamanan Profesional',
+        'Selalu Tepat Waktu & Efisien',
+        'Pengawalan Door-To-Door',
+        'Pengalaman Keamanan Personal',
+        'Prioritas Privasi & Keamanan',
       ],
     },
     {
-      name: "Bodyguard",
+      name: 'Bodyguard',
       description:
-        "Perlindungan personal premium dengan personel berpengalaman, terlatih dalam taktik perlindungan VIP serta kemampuan bela diri.",
-      image: "/bodyguard.webp",
+        'Perlindungan personal premium dengan personel berpengalaman, terlatih dalam taktik perlindungan VIP serta kemampuan bela diri.',
+      image: '/bodyguard.webp',
       features: [
-        "Personel Berpengalaman & Terlatih",
-        "Taktik Perlindungan VIP Canggih",
-        "Kemampuan Bela Diri Tingkat Tinggi",
-        "Respons Cepat & Proaktif",
-        "Jaminan Keamanan Personal Maksimal",
+        'Personel Berpengalaman & Terlatih',
+        'Taktik Perlindungan VIP Canggih',
+        'Kemampuan Bela Diri Tingkat Tinggi',
+        'Respons Cepat & Proaktif',
+        'Jaminan Keamanan Personal Maksimal',
       ],
     },
     {
-      name: "Pengamanan Event",
+      name: 'Pengamanan Event',
       description:
-        "Layanan pengamanan event skala kecil hingga besar dengan pendekatan profesional, terstruktur, dan respons cepat terhadap potensi gangguan.",
-      image: "/event.webp",
+        'Layanan pengamanan event skala kecil hingga besar dengan pendekatan profesional, terstruktur, dan respons cepat terhadap potensi gangguan.',
+      image: '/event.webp',
       features: [
-        "Pengendalian Massa Efektif",
-        "Pengamanan Artis & VIP Terstruktur",
-        "Analisis Risiko & Perencanaan Detail",
-        "Respons Cepat Terhadap Gangguan",
-        "Lingkungan Acara yang Aman & Terkendali",
+        'Pengendalian Massa Efektif',
+        'Pengamanan Artis & VIP Terstruktur',
+        'Analisis Risiko & Perencanaan Detail',
+        'Respons Cepat Terhadap Gangguan',
+        'Lingkungan Acara yang Aman & Terkendali',
       ],
     },
     {
-      name: "Pelatihan Security",
+      name: 'Pelatihan Security',
       description:
-        "Program pelatihan eksklusif untuk meningkatkan kualitas dan profesionalisme tenaga keamanan, bekerja sama dengan Range 19 USA.",
-      image: "/pelatihan.webp",
+        'Program pelatihan eksklusif untuk meningkatkan kualitas dan profesionalisme tenaga keamanan, bekerja sama dengan Range 19 USA.',
+      image: '/pelatihan.webp',
       features: [
-        "Kurikulum Berstandar Internasional",
-        "Instruktur Berpengalaman (Range 19 USA)",
-        "Pengembangan Profesional Tenaga Keamanan",
-        "Sertifikasi Kompetensi",
-        "Materi Taktis dan Keamanan Terbaru",
+        'Kurikulum Berstandar Internasional',
+        'Instruktur Berpengalaman (Range 19 USA)',
+        'Pengembangan Profesional Tenaga Keamanan',
+        'Sertifikasi Kompetensi',
+        'Materi Taktis dan Keamanan Terbaru',
       ],
     },
   ];
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -85,12 +85,12 @@ export default function JasaSection() {
                     src={service.image}
                     alt={service.name}
                     fill // <-- Gunakan prop fill
-                    style={{ objectFit: "cover" }} // <-- Pastikan objectFit: 'cover'
+                    style={{ objectFit: 'cover' }} // <-- Pastikan objectFit: 'cover'
                     // Menambahkan onError handler untuk komponen Image
                     onError={(e) => {
                       // Ganti src gambar ke placeholder umum jika terjadi error
                       // Pastikan Anda memiliki file /placeholder-image.webp di folder public
-                      e.currentTarget.src = "/placeholder-image.webp";
+                      e.currentTarget.src = '/placeholder-image.webp';
                     }}
                   />
                 </div>

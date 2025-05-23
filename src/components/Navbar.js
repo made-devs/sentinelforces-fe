@@ -1,10 +1,10 @@
-"use client";
-import { useState, useEffect, useRef } from "react";
+'use client';
+import { useState, useEffect, useRef } from 'react';
 import {
   Bars3Icon,
   XMarkIcon,
   ChevronDownIcon,
-} from "@heroicons/react/24/outline";
+} from '@heroicons/react/24/outline';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,31 +14,29 @@ export default function Navbar() {
 
   // Data navigasi yang sudah diperbarui sesuai diskusi untuk Sentinel Forces
   const navLinksData = [
-    { name: "Beranda", href: "/" }, // Sesuai "Beranda (Home)"
-    { name: "Tentang Kami", href: "/tentang-kami" }, // Sesuai "Tentang Kami (About Us)"
+    { name: 'Beranda', href: '/' }, // Sesuai "Beranda (Home)"
+    { name: 'Tentang Kami', href: '/tentang-kami' }, // Sesuai "Tentang Kami (About Us)"
     {
-      name: "Layanan", // Sesuai "Layanan (Services)"
-      href: "#",
+      name: 'Layanan', // Sesuai "Layanan (Services)"
+      href: '#',
       submenu: [
         {
-          name: "Jasa Outsourcing Security",
-          href: "#services/outsourcing-security",
+          name: 'Jasa Outsourcing Security',
+          href: '/outsourcing-security',
         },
-        { name: "Jasa Bodyguard", href: "#services/bodyguard" },
+        { name: 'Jasa Bodyguard', href: '/bodyguard' },
         {
-          name: "Jasa Pengamanan Konser atau Event",
-          href: "#services/event-security",
+          name: 'Jasa Pengamanan Konser atau Event',
+          href: '/event-security',
         },
         {
-          name: "Pelatihan Outsourcing Security",
-          href: "#services/security-training",
+          name: 'Pelatihan Outsourcing Security',
+          href: '/pelatihan-security',
         },
       ],
     },
-    // Menghilangkan menu 'Pages' karena tidak relevan dengan struktur Sentinel Forces
-    { name: "Klien & Kemitraan", href: "#" }, // Sesuai "Klien & Kemitraan (Clients & Partnerships)"
-    { name: "Artikel & Berita", href: "#" }, // Sesuai "Artikel/Berita (Blog/News)"
-    { name: "Kontak", href: "#" }, // Sesuai "Kontak (Contact Us)"
+
+    { name: 'Kontak', href: '/kontak' }, // Sesuai "Kontak (Contact Us)"
   ];
 
   useEffect(() => {
@@ -64,9 +62,9 @@ export default function Navbar() {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
       if (timeoutIdRef.current) clearTimeout(timeoutIdRef.current); // Bersihkan timeout saat unmount
     };
   }, [openDropdown]);
@@ -124,7 +122,7 @@ export default function Navbar() {
               className="relative"
               onMouseEnter={() => handleMouseEnterItem(item.name)}
               onMouseLeave={handleMouseLeaveArea} // Mencakup seluruh area item + dropdown
-              ref={(el) => (dropdownRefs.current[item.name + "_wrapper"] = el)}
+              ref={(el) => (dropdownRefs.current[item.name + '_wrapper'] = el)}
             >
               <a
                 id={`nav-item-${item.name}`}
@@ -142,7 +140,7 @@ export default function Navbar() {
                 {item.submenu && (
                   <ChevronDownIcon
                     className={`w-4 h-4 ml-1 transition-transform duration-200 ${
-                      openDropdown === item.name ? "rotate-180" : ""
+                      openDropdown === item.name ? 'rotate-180' : ''
                     }`}
                   />
                 )}

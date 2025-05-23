@@ -1,22 +1,25 @@
-import React from "react";
+import React from 'react';
+import Image from 'next/image'; // <-- Import Image component
 
 export default function Keunggulan() {
   return (
     <section className="bg-white py-16 lg:py-24 font-open-sans">
-      {" "}
+      {' '}
       {/* Latar belakang putih untuk section */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Kolom Kiri: Gambar yang Berdampak */}
           <div className="mt-8 lg:mt-0">
-            <img
-              src="/pendekatan-kami-image.webp" // <-- Ganti dengan URL gambar yang sesuai dari folder public Anda
-              alt="Pendekatan dan Keunggulan Sentinel Forces"
-              className="w-full h-auto rounded-lg shadow-xl object-cover"
+            {/* Mengganti <img> dengan <Image /> */}
+            <Image
+              src="/bodyguard&client.webp" // <-- Ganti dengan URL gambar yang sesuai dari folder public Anda
+              alt="Pendekatan dan Keunggulan Sentinel Forces" // Deskripsi alt text
+              width={600} // <-- Tetapkan lebar intrinsik gambar Anda (contoh: 600px)
+              height={400} // <-- Tetapkan tinggi intrinsik gambar Anda (contoh: 400px)
+              className="w-full h-auto rounded-lg shadow-xl object-cover" // Kelas tetap sama untuk styling
               onError={(e) => {
-                e.target.onerror = null;
-                e.target.src =
-                  "https://placehold.co/600x400/e2e8f0/333333?text=Image+Placeholder";
+                e.currentTarget.src =
+                  'https://placehold.co/600x400/e2e8f0/333333?text=Image+Placeholder';
               }}
             />
           </div>
@@ -30,7 +33,7 @@ export default function Keunggulan() {
               Keamanan Adaptif, Presisi, dan Global
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-4">
-              {" "}
+              {' '}
               {/* Teks konten berwarna abu-abu gelap */}
               Kami memahami bahwa setiap kebutuhan keamanan bersifat unik. Oleh
               karena itu, Sentinel Forces menerapkan pendekatan adaptif,

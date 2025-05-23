@@ -1,8 +1,8 @@
-"use client"; // <-- Pastikan ini ada di baris paling atas file Anda
+'use client'; // <-- Pastikan ini ada di baris paling atas file Anda
 
-import React, { useRef, useEffect } from "react";
-import Image from "next/image"; // <-- Import komponen Image dari next/image
-import { gsap } from "gsap"; // Import GSAP library
+import React, { useRef, useEffect } from 'react';
+import Image from 'next/image'; // <-- Import komponen Image dari next/image
+import { gsap } from 'gsap'; // Import GSAP library
 
 export default function HeroSection() {
   const mainRef = useRef(null); // Ref untuk elemen <main> sebagai container
@@ -13,13 +13,13 @@ export default function HeroSection() {
   const ctaRef = useRef(null); // Ref untuk elemen <button> CTA
 
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
     // Animasi Latar Belakang (menggunakan Image component)
     tl.fromTo(
       imageRef.current, // <-- Target animasi sekarang adalah Image component
       { opacity: 0, scale: 1.05 }, // Mulai dari transparan dan sedikit zoom in
-      { opacity: 1, scale: 1, duration: 2, ease: "expo.out" } // Fade-in dan kembali ke skala normal
+      { opacity: 1, scale: 1, duration: 2, ease: 'expo.out' } // Fade-in dan kembali ke skala normal
     );
 
     // Animasi Overlay: Fade-in secara bersamaan dengan animasi background
@@ -27,31 +27,31 @@ export default function HeroSection() {
       overlayRef.current,
       { opacity: 0 },
       { opacity: 1, duration: 1 },
-      "<"
+      '<'
     );
 
     // Animasi Headline (h1)
     tl.fromTo(
       headlineRef.current,
       { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" },
-      "+=0.1"
+      { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' },
+      '+=0.1'
     );
 
     // Animasi Paragraf Deskripsi (p)
     tl.fromTo(
       descriptionRef.current,
       { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-      "+=0.2"
+      { opacity: 1, y: 0, duration: 1, ease: 'power2.out' },
+      '+=0.2'
     );
 
     // Animasi Tombol CTA (button)
     tl.fromTo(
       ctaRef.current,
       { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)" },
-      "+=0.2"
+      { opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.7)' },
+      '+=0.2'
     );
   }, []); // Array dependensi kosong memastikan efek hanya berjalan sekali saat komponen di-mount
 
@@ -67,11 +67,11 @@ export default function HeroSection() {
           {/* Komponen Image dari Next.js sebagai Background */}
           <Image
             ref={imageRef} // <-- Hubungkan ref ke Image component
-            src="/bodyguard.jpg" // <-- Path ke gambar background Anda
+            src="/Hero2.webp" // <-- Path ke gambar background Anda
             alt="Security Background" // Deskripsi alt text yang relevan
             priority // Gunakan priority untuk gambar LCP (Largest Contentful Paint)
             fill // Properti 'fill' akan membuat gambar mengisi elemen parent-nya secara absolut
-            style={{ objectFit: "cover" }} // Pastikan gambar menutupi area tanpa terdistorsi
+            style={{ objectFit: 'cover' }} // Pastikan gambar menutupi area tanpa terdistorsi
             className="z-0 opacity-0 scale-105" // <-- Kondisi awal untuk animasi (z-index terendah)
           />
 

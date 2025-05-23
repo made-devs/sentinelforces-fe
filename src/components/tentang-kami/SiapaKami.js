@@ -1,9 +1,12 @@
-import React from "react";
+import React from 'react';
+import Image from 'next/image'; // <-- Import Image component
+
 // Anda tidak perlu mengimpor FaShieldAlt, FaClock, FaUsers, FaStar, FaBolt, FaGlobeAmericas
 // karena kita tidak lagi menggunakan struktur kartu 5 poin dengan ikon tersebut.
 // Import ini bisa dihapus jika tidak digunakan di bagian lain file ini.
 
-export default function SiapaKami() {
+export default function SiapaKamiSection() {
+  // Menggunakan nama komponen yang lebih spesifik
   return (
     // Pertahankan style dasar section (bg-black, padding, relative, overflow-hidden)
     <section className="bg-black pt-16 font-open-sans lg:py-24 relative overflow-hidden">
@@ -91,8 +94,6 @@ export default function SiapaKami() {
 
             {/* Tombol Call-to-Action (CTA) */}
             <div className="mt-10">
-              {" "}
-              {/* Tambahkan margin top untuk jarak dari list */}
               <a
                 href="/tentang-kami" // Ganti dengan URL halaman About Us lengkap jika ada
                 className="inline-block bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 rounded-full font-semibold transition-colors duration-300"
@@ -104,14 +105,15 @@ export default function SiapaKami() {
 
           {/* Kolom Kanan: Gambar */}
           <div className="mt-8 lg:mt-0">
-            <img
-              src="/siapa-kami-image.webp" // <-- Ganti dengan URL gambar yang sesuai dari folder public Anda
+            <Image // <-- Mengganti <img> dengan <Image />
+              src="/hero.webp" // <-- Ganti dengan URL gambar yang sesuai dari folder public Anda
               alt="Tim Keamanan Profesional Sentinel Forces"
+              width={600} // <-- Sesuaikan lebar intrinsik gambar Anda (contoh: 600px)
+              height={400} // <-- Sesuaikan tinggi intrinsik gambar Anda (contoh: 400px)
               className="w-full h-auto rounded-lg shadow-xl object-cover"
               onError={(e) => {
-                e.target.onerror = null;
-                e.target.src =
-                  "https://placehold.co/600x400/262626/888888?text=Image+Placeholder";
+                e.currentTarget.src =
+                  'https://placehold.co/600x400/262626/888888?text=Image+Placeholder';
               }}
             />
           </div>
@@ -120,10 +122,15 @@ export default function SiapaKami() {
 
       {/* Gambar border.webp di bagian bawah section */}
       <div className="absolute bottom-0 left-0 w-full z-10">
-        <img
+        <Image // <-- Mengganti <img> dengan <Image />
           src="/border.webp" // Pastikan path ini benar ke file Anda
           alt="Section Divider"
+          width={1920} // <-- Sesuaikan lebar intrinsik gambar border Anda (contoh: 1920px)
+          height={100} // <-- Sesuaikan tinggi intrinsik gambar border Anda (contoh: 100px)
           className="w-full h-auto block"
+          onError={(e) => {
+            e.currentTarget.src = '/placeholder-image.webp';
+          }}
         />
       </div>
     </section>
