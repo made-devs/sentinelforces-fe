@@ -1,82 +1,165 @@
-// Tidak perlu 'use client' jika tidak ada interaktivitas spesifik client-side lain atau hooks
-// Jika Anda menggunakan Hooks (misal: useRef, useEffect) di luar ini, 'use client' tetap diperlukan.
-// Untuk fixed background saja, tidak perlu.
+'use client'; // Diperlukan karena kita menggunakan hooks (useRef, useEffect)
 
+import React, { useEffect, useRef } from 'react';
 import {
   FaComments,
   FaClipboardList,
   FaUsersCog,
   FaChartLine,
-} from "react-icons/fa"; // Atau ikon lain yang sesuai
+} from 'react-icons/fa';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function WorkProcessSection() {
-  // processSteps tetap sama
   const processSteps = [
     {
       icon: FaComments,
-      title: "Konsultasi Awal",
+      title: 'Konsultasi Awal',
       description:
-        "Kami memulai dengan sesi konsultasi mendalam untuk memahami secara menyeluruh kebutuhan spesifik Anda, tujuan pengamanan, dan potensi risiko yang mungkin ada.",
+        'Kami memulai dengan sesi konsultasi mendalam untuk memahami secara menyeluruh kebutuhan spesifik Anda, tujuan pengamanan, dan potensi risiko yang mungkin ada.',
     },
     {
       icon: FaClipboardList,
-      title: "Analisis & Perencanaan",
+      title: 'Analisis & Perencanaan',
       description:
-        "Tim ahli kami akan melakukan analisis risiko komprehensif, kemudian menyusun strategi keamanan yang dipersonalisasi dan rencana operasional yang detail.",
+        'Tim ahli kami akan melakukan analisis risiko komprehensif, kemudian menyusun strategi keamanan yang dipersonalisasi dan rencana operasional yang detail.',
     },
     {
       icon: FaUsersCog,
-      title: "Implementasi Profesional",
+      title: 'Implementasi Profesional',
       description:
-        "Setelah rencana disetujui, personel keamanan terbaik kami akan ditugaskan dan mulai melaksanakan tugas sesuai protokol standar internasional, dengan dukungan penuh dari manajemen.",
+        'Setelah rencana disetujui, personel keamanan terbaik kami akan ditugaskan dan mulai melaksanakan tugas sesuai protokol standar internasional, dengan dukungan penuh dari manajemen.',
     },
     {
-      icon: FaChartLine, // Opsional: jika ingin 4 langkah
-      title: "Pemantauan & Evaluasi",
+      icon: FaChartLine,
+      title: 'Pemantauan & Evaluasi',
       description:
-        "Kami memastikan efektivitas layanan dengan pemantauan berkelanjutan, pelaporan berkala, dan penyesuaian strategi jika diperlukan untuk menjamin perlindungan maksimal.",
+        'Kami memastikan efektivitas layanan dengan pemantauan berkelanjutan, pelaporan berkala, dan penyesuaian strategi jika diperlukan untuk menjamin perlindungan maksimal.',
     },
   ];
 
+  const sectionContentRef = useRef(null); // Ref untuk kontainer konten utama (z-[2])
+  const mainTitleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const gridContainerRef = useRef(null);
+
+  useEffect(() => {
+    // Pastikan semua elemen yang direferensikan sudah ada
+    if (
+      !sectionContentRef.current ||
+      !mainTitleRef.current ||
+      !subtitleRef.current ||
+      !gridContainerRef.current
+    ) {
+      console.warn(
+        'WorkProcessSection: One or more refs not available for animation.'
+      );
+      return;
+    }
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionContentRef.current, // Pemicu berdasarkan kontainer konten
+        start: 'top 80%', // Mulai animasi saat 80% bagian atas kontainer konten masuk viewport
+        toggleActions: 'play none none none',
+        // markers: true, // Hilangkan komentar ini untuk debugging posisi trigger
+      },
+    });
+
+    // 1. Animasi Judul Utama
+    tl.from(
+      mainTitleRef.current,
+      {
+        opacity: 0,
+        y: -30, // Geser dari atas
+        duration: 0.8,
+        ease: 'power3.out',
+      },
+      0
+    ); // Mulai di awal timeline
+
+    // 2. Animasi Subtitle/Paragraf Deskripsi
+    tl.from(
+      subtitleRef.current,
+      {
+        opacity: 0,
+        y: -20,
+        duration: 0.7,
+        ease: 'power3.out',
+      },
+      '-=0.5'
+    ); // Mulai 0.5s sebelum animasi judul selesai (overlap)
+
+    // 3. Animasi Kartu Langkah Proses (staggered)
+    const cards = gsap.utils.toArray(gridContainerRef.current.children);
+    if (cards.length > 0) {
+      tl.from(
+        cards,
+        {
+          opacity: 0,
+          y: 50, // Geser dari bawah
+          duration: 0.6,
+          stagger: 0.15, // Jeda antar kartu
+          ease: 'power3.out',
+        },
+        '-=0.4'
+      ); // Mulai 0.4s sebelum animasi subtitle selesai (overlap)
+    }
+
+    // Cleanup timeline saat komponen unmount
+    return () => {
+      if (tl) {
+        tl.kill();
+      }
+    };
+  }, []);
+
   return (
-    // Terapkan background image, size, position, dan attachment: fixed langsung pada section
-    // Hapus bg-neutral-900 karena sudah ada backgroundImage
     <section
       className="py-16 lg:py-24 font-open-sans relative overflow-hidden"
       style={{
-        backgroundImage: "url('/bodyguard.webp')", // Gambar background tetap
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed", // <-- Ini yang membuat background diam
+        backgroundImage: "url('/bodyguard.webp')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
       }}
     >
-      {/* Overlay Gelap pada Background Fixed */}
-      {/* Opacity 0.4 agar konten di atasnya tetap terbaca */}
-      <div className="absolute inset-0 z-[1] bg-black opacity-40"></div>{" "}
-      {/* z-[1] agar di atas background fixed */}
-      {/* Konten Utama Section - Pastikan z-index lebih tinggi dari overlay */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-[2]">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-plus-jakarta-sans mb-8">
+      <div className="absolute inset-0 z-[1] bg-black opacity-40"></div>
+
+      <div
+        ref={sectionContentRef}
+        className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-[2]"
+      >
+        <h2
+          ref={mainTitleRef}
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-plus-jakarta-sans mb-8"
+        >
           Proses Kerja Kami
         </h2>
-        <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
+        <p
+          ref={subtitleRef}
+          className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto"
+        >
           Kami telah menyederhanakan prosesnya agar Anda dapat dengan mudah
           mengakses layanan keamanan profesional yang Anda butuhkan.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          ref={gridContainerRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           {processSteps.map((step, index) => (
             <div
               key={index}
-              className="relative bg-neutral-800 px-6 pb-8 pt-16 rounded-lg shadow-lg flex flex-col items-start text-left"
+              className="relative bg-neutral-800 px-6 pb-8 pt-16 rounded-lg shadow-lg flex flex-col items-start text-left process-step-card" // Tambahkan kelas jika ingin seleksi via kelas
             >
-              {/* Icon Container */}
               <div className="absolute left-6 top-0 transform -translate-y-1/2">
                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-yellow-400 text-black shadow-lg">
                   <step.icon className="h-8 w-8" aria-hidden="true" />
                 </div>
               </div>
-              {/* Konten Teks */}
               <div className="text-left">
                 <h3 className="text-xl font-semibold text-white">
                   {step.title}

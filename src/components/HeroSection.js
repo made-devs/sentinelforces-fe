@@ -19,7 +19,7 @@ export default function HeroSection() {
     tl.fromTo(
       imageRef.current, // <-- Target animasi sekarang adalah Image component
       { opacity: 0, scale: 1.05 }, // Mulai dari transparan dan sedikit zoom in
-      { opacity: 1, scale: 1, duration: 2, ease: 'expo.out' } // Fade-in dan kembali ke skala normal
+      { opacity: 1, scale: 1, duration: 1, ease: 'expo.out' } // Fade-in dan kembali ke skala normal
     );
 
     // Animasi Overlay: Fade-in secara bersamaan dengan animasi background

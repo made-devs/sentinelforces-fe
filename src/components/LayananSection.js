@@ -1,7 +1,19 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image'; // <-- Import Image component
+import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import {
+  FaClock,
+  FaUsers,
+  FaStar,
+  FaBolt,
+  FaGlobeAmericas,
+  FaShieldAlt,
+} from 'react-icons/fa';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Layanan() {
   const servicesData = [
@@ -9,7 +21,7 @@ export default function Layanan() {
       name: 'Security',
       description:
         'Solusi keamanan terpercaya untuk perjalanan Anda, dari tur kota hingga transfer bandara, memastikan kenyamanan dan dan perlindungan optimal.',
-      image: '/security.webp', // <-- Path telah diperbaiki: Ditambahkan tanda '/' di depan
+      image: '/security.webp',
       features: [
         'Petugas Keamanan Profesional',
         'Selalu Tepat Waktu & Efisien',
@@ -63,33 +75,169 @@ export default function Layanan() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const sectionRef = useRef(null);
+  const badgeRef = useRef(null);
+  const mainTitleRef = useRef(null);
+  const gridContainerRef = useRef(null);
+  const bottomBorderRef = useRef(null);
+  const scrollTopButtonRef = useRef(null);
+
+  useEffect(() => {
+    const allRefsAvailable =
+      sectionRef.current &&
+      badgeRef.current &&
+      mainTitleRef.current &&
+      gridContainerRef.current &&
+      bottomBorderRef.current &&
+      scrollTopButtonRef.current;
+
+    if (!allRefsAvailable) {
+      console.warn(
+        'LayananSection: One or more refs not available for animation.'
+      );
+      // return; // Bisa di-return jika tidak ingin melanjutkan tanpa semua ref
+    }
+
+    let buttonScrollTriggerInstance; // Untuk menyimpan instance ST tombol
+    const buttonElement = scrollTopButtonRef.current;
+
+    if (buttonElement) {
+      gsap.set(buttonElement, { opacity: 0, pointerEvents: 'none' });
+      buttonScrollTriggerInstance = ScrollTrigger.create({
+        trigger: 'body',
+        start: 'top -300px',
+        end: 'bottom bottom',
+        onUpdate: (self) => {
+          // Menggunakan window.scrollY untuk cek posisi scroll saat onUpdate
+          if (window.scrollY > 300) {
+            gsap.to(buttonElement, {
+              opacity: 1,
+              pointerEvents: 'auto',
+              duration: 0.3,
+            });
+          } else {
+            gsap.to(buttonElement, {
+              opacity: 0,
+              pointerEvents: 'none',
+              duration: 0.3,
+            });
+          }
+        },
+        // Menghapus onEnter dan onLeaveBack karena onUpdate sudah menangani logikanya
+        // Jika ingin tetap menggunakan onEnter/onLeaveBack, pastikan logikanya tidak konflik
+      });
+    }
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+        // markers: true,
+      },
+    });
+
+    if (badgeRef.current) {
+      tl.from(
+        badgeRef.current,
+        {
+          opacity: 0,
+          y: -30,
+          duration: 0.6,
+          ease: 'power2.out',
+        },
+        0
+      );
+    }
+
+    if (mainTitleRef.current) {
+      tl.from(
+        mainTitleRef.current,
+        {
+          opacity: 0,
+          y: -30,
+          duration: 0.8,
+          ease: 'power2.out',
+        },
+        '-=0.4'
+      );
+    }
+
+    if (gridContainerRef.current) {
+      const cards = gsap.utils.toArray(gridContainerRef.current.children);
+      if (cards.length > 0) {
+        tl.from(
+          cards,
+          {
+            opacity: 0,
+            y: 50,
+            scale: 0.95,
+            duration: 0.7,
+            stagger: 0.15,
+            ease: 'power3.out',
+          },
+          '-=0.5'
+        );
+      }
+    }
+
+    if (bottomBorderRef.current) {
+      tl.from(
+        bottomBorderRef.current,
+        {
+          opacity: 0,
+          y: 30,
+          duration: 1.0,
+          ease: 'sine.out',
+        },
+        '-=0.5'
+      );
+    }
+
+    return () => {
+      if (tl) tl.kill(); // Membunuh timeline utama dan ST yang terkait dengannya
+      if (buttonScrollTriggerInstance) buttonScrollTriggerInstance.kill(); // Membunuh ST tombol secara spesifik
+      if (buttonElement) gsap.killTweensOf(buttonElement); // Membunuh tween pada tombol
+    };
+  }, []);
+
   return (
-    <section className="relative min-h-screen bg-white pt-16 lg:pt-24 text-neutral-800 font-open-sans">
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen bg-white pt-16 lg:pt-24 text-neutral-800 font-open-sans"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-16 lg:pb-24">
-        <p className="text-sm text-center font-semibold text-yellow-500 tracking-wider mb-3 uppercase">
+        <p
+          ref={badgeRef}
+          className="text-sm text-center font-semibold text-yellow-500 tracking-wider mb-3 uppercase"
+        >
           Layanan Kami
         </p>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-plus-jakarta-sans font-bold text-black mb-16 text-center">
+        <h2
+          ref={mainTitleRef}
+          className="text-3xl sm:text-4xl lg:text-5xl font-plus-jakarta-sans font-bold text-black mb-16 text-center"
+        >
           Pilih Layanan Keamanan Terbaik
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          ref={gridContainerRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           {servicesData.map((service, index) => {
             return (
               <div
                 key={index}
-                className="bg-orange-50 rounded-lg shadow-xl overflow-hidden flex flex-col items-center p-6"
+                className="bg-orange-50 rounded-lg shadow-xl overflow-hidden flex flex-col items-center p-6 service-layanan-card"
               >
                 <div className="relative w-full h-40 mb-6 rounded-md overflow-hidden">
                   <Image
                     src={service.image}
                     alt={service.name}
-                    fill // <-- Gunakan prop fill
-                    style={{ objectFit: 'cover' }} // <-- Pastikan objectFit: 'cover'
-                    // Menambahkan onError handler untuk komponen Image
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    style={{ objectFit: 'cover' }}
                     onError={(e) => {
-                      // Ganti src gambar ke placeholder umum jika terjadi error
-                      // Pastikan Anda memiliki file /placeholder-image.webp di folder public
                       e.currentTarget.src = '/placeholder-image.webp';
                     }}
                   />
@@ -116,7 +264,7 @@ export default function Layanan() {
                           viewBox="0 0 24 24"
                           strokeWidth={2.5}
                           stroke="currentColor"
-                          className="w-4 h-4 text-yellow-400 mr-2"
+                          className="w-4 h-4 text-yellow-400 mr-2 flex-shrink-0"
                         >
                           <path
                             strokeLinecap="round"
@@ -138,9 +286,11 @@ export default function Layanan() {
         </div>
       </div>
       <button
+        ref={scrollTopButtonRef}
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 bg-yellow-400 hover:bg-yellow-500 text-black p-3 rounded-full shadow-lg z-20 transition-opacity duration-300"
+        className="fixed bottom-8 right-8 bg-yellow-400 hover:bg-yellow-500 text-black p-3 rounded-full shadow-lg z-20" // Hapus transition-opacity, GSAP akan mengontrolnya
         aria-label="Kembali ke atas"
+        style={{ opacity: 0, pointerEvents: 'none' }} // Mulai dengan tersembunyi
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -158,14 +308,16 @@ export default function Layanan() {
         </svg>
       </button>
 
-      {/* Gambar border-white.webp disisipkan di sini */}
-      <div className="absolute bottom-[-3rem] left-0 w-full z-10">
+      <div
+        ref={bottomBorderRef}
+        className="absolute bottom-[-3rem] left-0 w-full z-10"
+      >
         <Image
-          src="/border-white.webp" // Pastikan path ini benar ke file Anda di folder public
-          alt="Section Divider" // Deskripsi gambar untuk aksesibilitas
-          width={1920} // <-- Sesuaikan lebar intrinsik gambar border Anda (contoh)
-          height={100} // <-- Sesuaikan tinggi intrinsik gambar border Anda (contoh)
-          className="w-full h-auto block" // w-full untuk lebar penuh, h-auto untuk menjaga rasio aspek
+          src="/border-white.webp"
+          alt="Section Divider"
+          width={1920}
+          height={100}
+          className="w-full h-auto block"
         />
       </div>
     </section>
