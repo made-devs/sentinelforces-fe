@@ -87,10 +87,10 @@ Terima kasih.
                   <span>
                     Telepon:{' '}
                     <a
-                      href="tel:+6281234567890"
+                      href="tel:+6282210000522"
                       className="hover:text-yellow-400"
                     >
-                      +62 812-3456-7890
+                      +62 822-10000-522
                     </a>
                   </span>
                 </div>
@@ -99,18 +99,18 @@ Terima kasih.
                   <span>
                     Email:{' '}
                     <a
-                      href="mailto:info@sentinelforces.com"
+                      href="mailto:sentinelforcesofficial@gmail.com"
                       className="hover:text-yellow-400"
                     >
-                      info@sentinelforces.com
+                      sentinelforcesofficial@gmail.com
                     </a>
                   </span>
                 </div>
                 <div className="flex items-start justify-center md:justify-start">
                   <FaMapMarkerAlt className="w-6 h-6 text-yellow-400 mr-3 flex-shrink-0 mt-1" />
                   <span>
-                    Alamat: Jl. Raya Contoh No. 123, Bekasi, Jawa Barat,
-                    Indonesia
+                    Alamat: Jl. Bypass Ngurah Rai. 18X Tuban, Kec Kuta,
+                    Kabupaten Badung, Bali 80361
                   </span>
                 </div>
                 <div className="flex items-center justify-center md:justify-start">

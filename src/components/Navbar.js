@@ -1,5 +1,8 @@
 'use client';
+
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link'; // Impor komponen Link
 import {
   Bars3Icon,
   XMarkIcon,
@@ -10,15 +13,14 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const dropdownRefs = useRef({});
-  const timeoutIdRef = useRef(null); // Ref untuk menyimpan ID timeout
+  const timeoutIdRef = useRef(null);
 
-  // Data navigasi yang sudah diperbarui sesuai diskusi untuk Sentinel Forces
   const navLinksData = [
-    { name: 'Beranda', href: '/' }, // Sesuai "Beranda (Home)"
-    { name: 'Tentang Kami', href: '/tentang-kami' }, // Sesuai "Tentang Kami (About Us)"
+    { name: 'Beranda', href: '/' },
+    { name: 'Tentang Kami', href: '/tentang-kami' },
     {
-      name: 'Layanan', // Sesuai "Layanan (Services)"
-      href: '#',
+      name: 'Layanan',
+      href: '#', // href '#' tetap digunakan untuk item yang hanya membuka dropdown
       submenu: [
         {
           name: 'Jasa Outsourcing Security',
@@ -35,8 +37,7 @@ export default function Navbar() {
         },
       ],
     },
-
-    { name: 'Kontak', href: '/kontak' }, // Sesuai "Kontak (Contact Us)"
+    { name: 'Kontak', href: '/kontak' },
   ];
 
   useEffect(() => {
@@ -65,12 +66,12 @@ export default function Navbar() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-      if (timeoutIdRef.current) clearTimeout(timeoutIdRef.current); // Bersihkan timeout saat unmount
+      if (timeoutIdRef.current) clearTimeout(timeoutIdRef.current);
     };
   }, [openDropdown]);
 
   const handleMouseEnterItem = (itemName) => {
-    if (window.innerWidth < 768) return; // Hanya untuk desktop
+    if (window.innerWidth < 768) return;
     if (timeoutIdRef.current) {
       clearTimeout(timeoutIdRef.current);
       timeoutIdRef.current = null;
@@ -79,11 +80,10 @@ export default function Navbar() {
   };
 
   const handleMouseLeaveArea = () => {
-    // Untuk wrapper dan dropdown content
-    if (window.innerWidth < 768) return; // Hanya untuk desktop
+    if (window.innerWidth < 768) return;
     timeoutIdRef.current = setTimeout(() => {
       setOpenDropdown(null);
-    }, 200); // Jeda 200ms sebelum menutup, bisa disesuaikan
+    }, 200);
   };
 
   const handleParentItemClick = (itemName, hasSubmenu) => {
@@ -107,13 +107,24 @@ export default function Navbar() {
   return (
     <header className="py-6 px-4 sm:px-6 lg:px-8 fixed w-full z-30 bg-black/0 bg-gradient-to-t from-transparent to-black/70 font-plus-jakarta-sans transition-all duration-300">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Mengganti nama logo menjadi Sentinel Forces */}
-        <div className="text-3xl font-bold text-white">
-          SENTINEL FORCES
-          <span className="block text-xs font-normal text-gray-400 -mt-1">
-            MITRA KEAMANAN TERPERCAYA
-          </span>
-        </div>
+        {/* Logo dan Judul Situs menggunakan Link */}
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.webp"
+            alt="Sentinel Forces Logo"
+            width={40}
+            height={40}
+            className="h-10 mr-3"
+          />
+          <div>
+            <span className="text-2xl font-bold whitespace-nowrap text-white">
+              SENTINEL FORCES
+            </span>
+            <span className="block text-xs font-normal text-gray-400 -mt-1">
+              MITRA KEAMANAN TERPERCAYA
+            </span>
+          </div>
+        </Link>
 
         <nav className="hidden md:flex space-x-1 items-center">
           {navLinksData.map((item) => (
@@ -121,19 +132,18 @@ export default function Navbar() {
               key={item.name}
               className="relative"
               onMouseEnter={() => handleMouseEnterItem(item.name)}
-              onMouseLeave={handleMouseLeaveArea} // Mencakup seluruh area item + dropdown
+              onMouseLeave={handleMouseLeaveArea}
               ref={(el) => (dropdownRefs.current[item.name + '_wrapper'] = el)}
             >
-              <a
+              <Link
                 id={`nav-item-${item.name}`}
                 href={item.href}
-                className="text-gray-300 hover:text-yellow-400 transition-colors px-3 py-2 rounded-md flex items-center cursor-pointer" // Tambah cursor-pointer
+                className="text-gray-300 hover:text-yellow-400 transition-colors px-3 py-2 rounded-md flex items-center cursor-pointer"
                 onClick={(e) => {
                   if (item.submenu) {
-                    e.preventDefault();
+                    e.preventDefault(); // Mencegah navigasi untuk item dengan submenu
                     handleParentItemClick(item.name, true);
                   }
-                  // Jika tidak ada submenu, biarkan default href bekerja
                 }}
               >
                 {item.name}
@@ -144,13 +154,13 @@ export default function Navbar() {
                     }`}
                   />
                 )}
-              </a>
+              </Link>
               {item.submenu && openDropdown === item.name && (
                 <div
                   ref={(el) => (dropdownRefs.current[item.name] = el)}
-                  className="absolute left-0 mt-0 w-56 origin-top-left bg-white rounded-md shadow-lg z-40" // mt-0 untuk mengurangi celah
-                  onMouseEnter={() => handleMouseEnterItem(item.name)} // Batalkan penutupan saat masuk dropdown
-                  onMouseLeave={handleMouseLeaveArea} // Mulai timer penutupan saat keluar dropdown
+                  className="absolute left-0 mt-0 w-56 origin-top-left bg-white rounded-md shadow-lg z-40"
+                  onMouseEnter={() => handleMouseEnterItem(item.name)}
+                  onMouseLeave={handleMouseLeaveArea}
                 >
                   <div
                     className="py-1"
@@ -159,7 +169,7 @@ export default function Navbar() {
                     aria-labelledby={`nav-item-${item.name}`}
                   >
                     {item.submenu.map((subItem) => (
-                      <a
+                      <Link
                         key={subItem.name}
                         href={subItem.href}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full text-left border-b border-gray-100 last:border-b-0"
@@ -167,7 +177,7 @@ export default function Navbar() {
                         onClick={handleDropdownItemClick}
                       >
                         {subItem.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -176,8 +186,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Mengganti tombol menjadi 'Konsultasi Sekarang' atau 'Kontak Kami' */}
-        <button className="btn btn-outline border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black hidden md:inline-flex ml-4">
+        <button className="btn btn-outline text-lg border-yellow-400 bg-yellow-400  hover:bg-yellow-600 text-black hidden md:inline-flex ml-4">
           Konsultasi Sekarang
         </button>
 
@@ -209,29 +218,28 @@ export default function Navbar() {
                     </summary>
                     <div className="bg-black bg-opacity-30">
                       {item.submenu.map((subItem) => (
-                        <a
+                        <Link
                           key={subItem.name}
                           href={subItem.href}
                           className="block text-gray-300 hover:text-yellow-400 transition-colors px-4 py-3 w-full text-center border-t border-gray-700"
                           onClick={handleDropdownItemClick}
                         >
                           {subItem.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </details>
                 ) : (
-                  <a
+                  <Link
                     href={item.href}
                     className="text-gray-200 hover:text-yellow-400 transition-colors px-4 py-3 w-full text-center block"
                     onClick={handleDropdownItemClick}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 )}
               </div>
             ))}
-            {/* Mengganti tombol mobile menjadi 'Konsultasi Sekarang' atau 'Kontak Kami' */}
             <button
               className="btn btn-warning text-black w-3/4 mt-4"
               onClick={handleDropdownItemClick}

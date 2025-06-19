@@ -1,4 +1,4 @@
-'use client'; // Karena komponen ini mungkin memiliki interaktivitas atau hooks spesifik client di masa depan.
+'use client';
 
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
@@ -14,9 +14,9 @@ export default function JourneySection() {
 
   const sectionRef = useRef(null);
   const leftColumnRef = useRef(null);
-  const rightColumnRef = useRef(null); // Ini akan merujuk ke kotak oranye
+  const rightColumnRef = useRef(null);
   const badgeTextRef = useRef(null);
-  const imageWrapperRef = useRef(null); // Ref untuk wrapper gambar jika diperlukan
+  const imageWrapperRef = useRef(null);
   const titleRef = useRef(null);
   const paragraph1Ref = useRef(null);
   const paragraph2Ref = useRef(null);
@@ -24,13 +24,12 @@ export default function JourneySection() {
   const svgWavesRef = useRef(null);
 
   useEffect(() => {
-    // Kumpulkan semua ref yang harus ada
     const elements = [
       sectionRef.current,
       leftColumnRef.current,
       rightColumnRef.current,
       badgeTextRef.current,
-      imageWrapperRef.current, // atau elemen gambar langsung jika ref di <Image>
+      imageWrapperRef.current,
       titleRef.current,
       paragraph1Ref.current,
       paragraph2Ref.current,
@@ -38,7 +37,6 @@ export default function JourneySection() {
       svgWavesRef.current,
     ];
 
-    // Jika ada elemen yang belum siap, jangan jalankan animasi
     if (elements.some((el) => !el)) {
       console.warn(
         'JourneySection: One or more refs not available for animation.'
@@ -49,49 +47,45 @@ export default function JourneySection() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: 'top 80%', // Mulai animasi saat 80% bagian atas section masuk viewport
-        toggleActions: 'play none none none', // Mainkan sekali saat masuk
-        // markers: true, // Hilangkan komentar ini untuk debugging posisi trigger
+        start: 'top 80%',
+        toggleActions: 'play none none none',
       },
     });
 
-    // 1. Animasi Kolom Kiri dan Kanan (Kotak Oranye)
     tl.from(
       [leftColumnRef.current, rightColumnRef.current],
       {
         opacity: 0,
-        y: 60, // Efek geser ke atas
+        y: 60,
         duration: 0.8,
-        stagger: 0.2, // Kolom kanan muncul sedikit setelah kiri
+        stagger: 0.2,
         ease: 'power3.out',
       },
-      0 // Mulai di awal timeline
+      0
     );
 
-    // 2. Animasi Konten Kolom Kiri
     tl.from(
       badgeTextRef.current,
       {
         opacity: 0,
-        y: -20, // Efek geser ke bawah
+        y: -20,
         duration: 0.6,
         ease: 'power3.out',
       },
-      '-=0.5' // Mulai 0.5s sebelum animasi kolom selesai
+      '-=0.5'
     );
 
     tl.from(
-      imageWrapperRef.current, // Animasikan wrapper dari Next/Image
+      imageWrapperRef.current,
       {
         opacity: 0,
         scale: 0.9,
         duration: 0.8,
         ease: 'power3.out',
       },
-      '-=0.4' // Mulai 0.4s sebelum animasi badge selesai
+      '-=0.4'
     );
 
-    // 3. Animasi Konten Kolom Kanan (di dalam kotak oranye)
     tl.from(
       titleRef.current,
       {
@@ -100,7 +94,7 @@ export default function JourneySection() {
         duration: 0.7,
         ease: 'power3.out',
       },
-      '-=0.6' // Atur timing relatif terhadap animasi gambar
+      '-=0.6'
     );
 
     const paragraphs = [paragraph1Ref.current, paragraph2Ref.current].filter(
@@ -127,17 +121,16 @@ export default function JourneySection() {
         y: 20,
         scale: 0.85,
         duration: 0.6,
-        ease: 'back.out(1.7)', // Efek sedikit memantul untuk tombol
+        ease: 'back.out(1.7)',
       },
       '-=0.3'
     );
 
-    // 4. Animasi SVG Waves
     tl.from(
       svgWavesRef.current,
       {
         opacity: 0,
-        y: 10, // Sedikit geser ke atas untuk SVG container
+        y: 10,
         duration: 0.8,
         ease: 'sine.inOut',
       },
@@ -154,30 +147,29 @@ export default function JourneySection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-white py-16 lg:py-24 text-neutral-800"
+      className="bg-white py-24 lg:py-32 text-neutral-800" // Menambah padding atas dan bawah
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* 'items-center' ini penting untuk menyejajarkan kedua kolom secara vertikal */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Kolom Kiri */}
-          <div ref={leftColumnRef} className="space-y-6">
-            <div>
-              <span
-                ref={badgeTextRef}
-                className="text-sm font-semibold text-yellow-500 tracking-wider uppercase"
-              >
+          {/* Kolom Kiri (SUDAH DIPERBAIKI) */}
+          <div ref={leftColumnRef} className="relative">
+            {/* Teks badge sekarang diposisikan secara absolut */}
+            <div ref={badgeTextRef} className="absolute -top-10 left-0 z-10">
+              <span className="text-sm font-semibold text-yellow-500 tracking-wider uppercase">
                 Berintegritas & PROFESSIONAL
               </span>
             </div>
-            <div ref={imageWrapperRef} className="mt-8">
-              {' '}
-              {/* Wrapper untuk Image */}
+
+            {/* Wrapper gambar sekarang menjadi elemen utama di kolom ini */}
+            <div ref={imageWrapperRef}>
               <Image
-                src="/hero.webp"
-                alt="Layanan Profesional Sentinel Forces" // Alt text lebih relevan
+                src="/security3.webp"
+                alt="Layanan Profesional Sentinel Forces"
                 width={600}
                 height={350}
                 className="w-full h-auto rounded-lg shadow-lg object-cover"
-                priority // Pertimbangkan priority jika gambar ini penting untuk LCP
+                priority
                 onError={(e) => {
                   e.currentTarget.src =
                     'https://placehold.co/600x350/e2e8f0/333333?text=Gagal+Memuat+Gambar';
@@ -219,8 +211,7 @@ export default function JourneySection() {
                 onClick={scrollToTop}
                 className="btn bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 rounded-md font-extrabold font-plus-jakarta-sans"
               >
-                KONSULTASI SEKARANG{' '}
-                {/* onClick ditambahkan jika tombol ini juga scroll ke atas, atau hapus jika fungsinya lain */}
+                KONSULTASI SEKARANG
               </button>
             </div>
             {/* Elemen Dekoratif Garis Bergelombang */}

@@ -258,7 +258,7 @@ export default function SiapaKamiSection() {
               {' '}
               {/* Tambahkan wrapper untuk gambar agar animasi lebih mudah */}
               <Image
-                src="/hero.webp"
+                src="/security8.webp"
                 alt="Tim Keamanan Profesional Sentinel Forces"
                 width={600}
                 height={400}

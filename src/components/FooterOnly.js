@@ -92,23 +92,26 @@ export default function FooterOnly() {
               <li>
                 Telepon: {/* <a> untuk link eksternal (tel:) tetap digunakan */}
                 <a
-                  href="tel:+6281234567890"
+                  href="tel:+6282210000522"
                   className="hover:text-yellow-400 transition-colors duration-300"
                 >
-                  +62 812-3456-7890
+                  +62 822-10000-522
                 </a>
               </li>
               <li>
                 Email:{' '}
                 {/* <a> untuk link eksternal (mailto:) tetap digunakan */}
                 <a
-                  href="mailto:info@sentinelforces.com"
+                  href="mailto:sentinelforcesofficial@gmail.com"
                   className="hover:text-yellow-400 transition-colors duration-300"
                 >
-                  info@sentinelforces.com
+                  sentinelforcesofficial@gmail.com
                 </a>
               </li>
-              <li>Alamat: Jakarta, Indonesia</li>
+              <li>
+                Alamat: Jl. Bypass Ngurah Rai. 18X Tuban, Kec Kuta, Kabupaten
+                Badung, Bali 80361
+              </li>
             </ul>
           </div>
 

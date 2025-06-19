@@ -21,7 +21,7 @@ export default function Layanan() {
       name: 'Security',
       description:
         'Solusi keamanan terpercaya untuk perjalanan Anda, dari tur kota hingga transfer bandara, memastikan kenyamanan dan dan perlindungan optimal.',
-      image: '/security.webp',
+      image: '/security4.webp',
       features: [
         'Petugas Keamanan Profesional',
         'Selalu Tepat Waktu & Efisien',
@@ -34,7 +34,7 @@ export default function Layanan() {
       name: 'Bodyguard',
       description:
         'Perlindungan personal premium dengan personel berpengalaman, terlatih dalam taktik perlindungan VIP serta kemampuan bela diri.',
-      image: '/bodyguard.webp',
+      image: '/security3.webp',
       features: [
         'Personel Berpengalaman & Terlatih',
         'Taktik Perlindungan VIP Canggih',
@@ -47,7 +47,7 @@ export default function Layanan() {
       name: 'Pengamanan Event',
       description:
         'Layanan pengamanan event skala kecil hingga besar dengan pendekatan profesional, terstruktur, dan respons cepat terhadap potensi gangguan.',
-      image: '/event.webp',
+      image: '/security5.webp',
       features: [
         'Pengendalian Massa Efektif',
         'Pengamanan Artis & VIP Terstruktur',
@@ -60,7 +60,7 @@ export default function Layanan() {
       name: 'Pelatihan Security',
       description:
         'Program pelatihan eksklusif untuk meningkatkan kualitas dan profesionalisme tenaga keamanan, bekerja sama dengan Range 19 USA.',
-      image: '/pelatihan.webp',
+      image: '/security6.webp',
       features: [
         'Kurikulum Berstandar Internasional',
         'Instruktur Berpengalaman (Range 19 USA)',

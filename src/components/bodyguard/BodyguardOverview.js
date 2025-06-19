@@ -147,7 +147,7 @@ export default function BodyguardOverview() {
           {/* Kolom Kiri: Gambar Impactful */}
           <div ref={imageColumnRef} className="mt-8 lg:mt-0">
             <Image
-              src="/bodyguard1.webp"
+              src="/security3.webp"
               alt="Bodyguard Profesional Sentinel Forces"
               width={600}
               height={400}

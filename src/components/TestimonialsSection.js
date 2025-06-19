@@ -1,6 +1,7 @@
-'use client'; // Pastikan ini tetap ada di bagian paling atas file
+'use client';
 
-import React, { useEffect, useRef } from 'react'; // Impor useEffect dan useRef
+import React, { useEffect, useRef } from 'react';
+import Image from 'next/image'; // Impor komponen Image dari Next.js
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -9,11 +10,10 @@ import 'swiper/css/navigation';
 
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 
-// Impor GSAP dan ScrollTrigger
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger); // Daftarkan plugin ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 export default function TestimonialsSection() {
   const testimonialsData = [
@@ -22,87 +22,63 @@ export default function TestimonialsSection() {
         'Solusi keamanan terpercaya untuk aset bisnis kami. Dengan Sentinel Forces, operasional kami berjalan lancar tanpa kekhawatiran. Tim mereka sangat responsif dan terlatih.',
       clientName: 'Ibu Siti Aminah',
       clientTitle: 'Direktur Operasional, PT Maju Bersama',
-      avatar: '/placeholder-avatar-woman.jpg',
+      avatar: '/client4.webp',
     },
     {
       quote:
         'Pengamanan acara kami berjalan sangat sukses berkat perencanaan dan eksekusi tim Sentinel Forces yang sempurna. Pengendalian massa dan pengamanan VIP dilakukan dengan sangat profesional.',
-      clientName: 'Bapak Bayu Samudera',
+      clientName: 'Ibu Rina Wijaya', // Diubah menjadi nama wanita
       clientTitle: 'Event Organizer, Harmoni Kreatif',
-      avatar: '/placeholder-avatar-man2.jpg',
+      avatar: '/client2.webp', // Pastikan Anda mengganti file gambar ini dengan foto wanita
     },
     {
       quote:
-        'Pelatihan keamanan dari Sentinel Forces, berkolaborasi dengan Range 19 USA, sungguh meningkatkan kompetensi tim saya. Standar internasionalnya terasa sekali!',
-      clientName: 'Bapak Rian Prasetyo',
-      clientTitle: 'Koordinator Keamanan',
-      avatar: '/placeholder-avatar-man3.jpg',
+        "The joint training from Sentinel Forces and Range 19 USA was transformative. Their program elevated our team's skills to a truly global standard of excellence.", // Quote disesuaikan ke Bahasa Inggris
+      clientName: 'Mr. Marcus Thorne', // Nama diubah menjadi nama African American
+      clientTitle: 'Head of Security, Global Logistics Corp', // Jabatan disesuaikan
+      avatar: '/client3.webp', // Disarankan untuk diganti dengan foto yang sesuai
     },
     {
       quote:
         'Merasa sangat aman dan terlindungi setiap saat. Profesionalisme tim Sentinel Forces benar-benar luar biasa, memberikan ketenangan pikiran yang saya butuhkan.',
       clientName: 'Bapak Andri Gunawan',
       clientTitle: 'Pengusaha',
-      avatar: '/placeholder-avatar-man.jpg',
+      avatar: '/client1.webp',
     },
   ];
 
-  // Refs untuk animasi
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
-  const swiperContainerRef = useRef(null); // Ref untuk wrapper Swiper
+  const swiperContainerRef = useRef(null);
 
   useEffect(() => {
-    // Pastikan semua elemen yang direferensikan sudah ada
+    // ... (logika animasi GSAP tidak perlu diubah)
     if (
       !sectionRef.current ||
       !titleRef.current ||
       !swiperContainerRef.current
     ) {
-      console.warn(
-        'TestimonialsSection: One or more refs not available for animation.'
-      );
       return;
     }
-
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: sectionRef.current, // Pemicu berdasarkan section utama
-        start: 'top 80%', // Mulai animasi saat 80% bagian atas section masuk viewport
-        toggleActions: 'play none none none', // Mainkan sekali saat masuk
-        // markers: true, // Hilangkan komentar ini untuk debugging posisi trigger
+        trigger: sectionRef.current,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
       },
     });
-
-    // 1. Animasi Judul Utama
     tl.from(
       titleRef.current,
-      {
-        opacity: 0,
-        y: -30, // Geser dari atas
-        duration: 0.8,
-        ease: 'power3.out',
-      },
+      { opacity: 0, y: -30, duration: 0.8, ease: 'power3.out' },
       0
-    ); // Mulai di awal timeline
-
-    // 2. Animasi Kontainer Swiper
+    );
     tl.from(
       swiperContainerRef.current,
-      {
-        opacity: 0,
-        y: 50, // Geser dari bawah
-        duration: 1.0,
-        ease: 'power3.out',
-      },
+      { opacity: 0, y: 50, duration: 1.0, ease: 'power3.out' },
       '-=0.5'
-    ); // Mulai 0.5s sebelum animasi judul selesai (overlap)
-
-    // Cleanup timeline saat komponen unmount
+    );
     return () => {
-      if (tl) {
-        tl.kill();
-      }
+      if (tl) tl.kill();
     };
   }, []);
 
@@ -119,8 +95,9 @@ export default function TestimonialsSection() {
           Apa Kata Klien Kami
         </h2>
 
-        {/* Wrapper untuk Swiper agar bisa diberi ref untuk animasi GSAP */}
-        <div ref={swiperContainerRef}>
+        <div ref={swiperContainerRef} className="pb-12">
+          {' '}
+          {/* Tambah padding-bottom untuk pagination */}
           <Swiper
             spaceBetween={30}
             slidesPerView={1}
@@ -136,46 +113,40 @@ export default function TestimonialsSection() {
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
             breakpoints={{
-              640: {
-                slidesPerView: 1,
-                spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 30,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-              },
+              640: { slidesPerView: 1, spaceBetween: 20 },
+              768: { slidesPerView: 2, spaceBetween: 30 },
+              1024: { slidesPerView: 3, spaceBetween: 30 },
             }}
-            className="mySwiper" // Anda mungkin perlu style tambahan untuk .mySwiper jika belum ada
+            className="mySwiper"
           >
             {testimonialsData.map((testimonial, index) => (
-              <SwiperSlide key={index}>
-                <div
-                  className="bg-orange-50 p-8 rounded-lg drop-shadow-xl flex flex-col justify-between min-h-[350px] h-full" // Tambahkan h-full agar semua slide sama tinggi
-                >
-                  <p className="text-gray-800 text-lg italic mb-3 flex-grow text-left">
-                    &quot;{testimonial.quote}&quot;
-                  </p>
-
-                  <div className="flex flex-col items-center mt-auto">
-                    {' '}
-                    {/* mt-auto untuk mendorong ke bawah */}
+              <SwiperSlide key={index} className="h-full">
+                <div className="bg-orange-50 rounded-lg drop-shadow-xl overflow-hidden h-full flex flex-col">
+                  {/* Bagian Gambar (DIPERBAIKI) */}
+                  <div className="relative w-full h-[18rem]">
                     {testimonial.avatar && (
-                      <img // Tetap menggunakan <img> sesuai kode Anda
+                      <Image
                         src={testimonial.avatar}
-                        alt={`Avatar ${testimonial.clientName}`}
-                        className="w-16 h-16 rounded-full object-cover mb-4 border-2 border-yellow-400"
+                        alt={`Klien Sentinel Forces: ${testimonial.clientName}`}
+                        fill
+                        className="object-cover object-top"
                       />
                     )}
-                    <h3 className="text-xl font-semibold text-yellow-700">
-                      {testimonial.clientName}
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      {testimonial.clientTitle}
+                  </div>
+
+                  {/* Bagian Konten Teks */}
+                  <div className="p-6 flex flex-col flex-grow">
+                    <p className="text-gray-800 text-base italic mb-4 flex-grow text-left">
+                      &quot;{testimonial.quote}&quot;
                     </p>
+                    <div className="text-left mt-auto pt-4 border-t border-yellow-200">
+                      <h3 className="text-lg font-semibold text-yellow-700">
+                        {testimonial.clientName}
+                      </h3>
+                      <p className="text-gray-600 text-sm">
+                        {testimonial.clientTitle}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </SwiperSlide>

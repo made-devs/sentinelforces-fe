@@ -67,7 +67,7 @@ export default function HeroSection() {
           {/* Komponen Image dari Next.js sebagai Background */}
           <Image
             ref={imageRef} // <-- Hubungkan ref ke Image component
-            src="/Hero2.webp" // <-- Path ke gambar background Anda
+            src="/hero.webp" // <-- Path ke gambar background Anda
             alt="Security Background" // Deskripsi alt text yang relevan
             priority // Gunakan priority untuk gambar LCP (Largest Contentful Paint)
             fill // Properti 'fill' akan membuat gambar mengisi elemen parent-nya secara absolut

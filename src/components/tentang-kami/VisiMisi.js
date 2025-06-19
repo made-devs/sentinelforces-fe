@@ -10,13 +10,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function VisiMisi() {
   const visiStatement =
-    'Menjadi garda terdepan dalam industri keamanan profesional yang terpercaya, tangguh, dan berstandar internasional, serta menciptakan rasa aman dan perlindungan maksimal di setiap lini kehidupan.';
+    'Menjadi garda terdepan dalam industri keamanan profesional yang terpercaya, tangguh, dan berstandar internasional, serta menciptakan rasa aman dan perlindungan maksimal.';
 
   const misiPoints = [
-    'Menyediakan layanan keamanan komprehensif dengan personel berpengalaman dan terlatih.',
-    'Menerapkan standar operasional global dan teknologi terkini dalam setiap layanan.',
-    'Membangun kemitraan strategis dengan klien berdasarkan kepercayaan, integritas, dan hasil.',
-    'Mengembangkan kompetensi personel melalui pelatihan berstandar internasional.',
+    'Menghadirkan rasa aman, kepastian, dan kepercayaan penuh kepada setiap klien melalui layanan keamanan, pengawalan, dan penanganan situasi berisiko dengan standar profesionalisme terbaik. Kami berkomitmen untuk melindungi aset, reputasi, dan keselamatan Anda melalui strategi yang tegas, beretika, serta berlandaskan integritas tinggi.',
   ];
 
   const sectionRef = useRef(null);
@@ -188,7 +185,7 @@ export default function VisiMisi() {
             </h3>
             <ul
               ref={missionListRef}
-              className="text-lg text-gray-700 space-y-3 leading-relaxed list-disc list-inside"
+              className="text-lg text-gray-700 space-y-3 leading-relaxed "
             >
               {misiPoints.map((point, index) => (
                 <li key={index}>{point}</li>

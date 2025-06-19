@@ -222,19 +222,19 @@ export default function Footer() {
               <li>
                 Telepon:{' '}
                 <a
-                  href="tel:+62822100000522"
+                  href="tel:+6282210000522"
                   className="hover:text-yellow-400 transition-colors duration-300"
                 >
-                  +62 822-1000-00522
+                  +62 822-10000-522
                 </a>
               </li>
               <li>
                 Email:{' '}
                 <a
-                  href="mailto:sentinelforces01@gmail.com"
+                  href="mailto:sentinelforcesofficial@gmail.com"
                   className="hover:text-yellow-400 transition-colors duration-300"
                 >
-                  sentinelforces01@gmail.com
+                  sentinelforcesofficial@gmail.com
                 </a>
               </li>
               <li>

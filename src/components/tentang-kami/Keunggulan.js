@@ -121,7 +121,7 @@ export default function Keunggulan() {
           {/* Kolom Kiri: Gambar yang Berdampak */}
           <div ref={imageColumnRef} className="mt-8 lg:mt-0">
             <Image
-              src="/bodyguard&client.webp"
+              src="/security9.webp"
               alt="Pendekatan dan Keunggulan Sentinel Forces"
               width={600}
               height={400}

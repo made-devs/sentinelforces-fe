@@ -1,11 +1,11 @@
-"use client"; // Gunakan direktif ini jika Anda berencana menambahkan animasi atau interaktivitas di sisi klien
+'use client'; // Gunakan direktif ini jika Anda berencana menambahkan animasi atau interaktivitas di sisi klien
 
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import Keunggulan from "@/components/tentang-kami/Keunggulan";
-import SiapaKami from "@/components/tentang-kami/SiapaKami";
-import VisiMisi from "@/components/tentang-kami/VisiMisi";
-import React from "react";
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
+import Keunggulan from '@/components/tentang-kami/Keunggulan';
+import SiapaKami from '@/components/tentang-kami/SiapaKami';
+import VisiMisi from '@/components/tentang-kami/VisiMisi';
+import React from 'react';
 
 export default function AboutUsPage() {
   return (
@@ -14,13 +14,12 @@ export default function AboutUsPage() {
       <section
         className="relative h-[50vh] flex items-center justify-center text-white overflow-hidden"
         style={{
-          backgroundImage: "url('/team.webp')", // <-- Ganti dengan gambar hero untuk halaman About Us
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed", // Efek parallax sederhana
+          backgroundImage: "url('/hero3.webp')", // <-- Ganti dengan gambar hero untuk halaman About Us
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black"></div>{" "}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black"></div>{' '}
         {/* Overlay gelap */}
         <div className="relative z-10 text-center container mx-auto px-4 font-open-sans">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-plus-jakarta-sans leading-tight">

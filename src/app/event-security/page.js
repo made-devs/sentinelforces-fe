@@ -15,10 +15,9 @@ export default function EventSecurityPage() {
         className="relative h-[50vh] flex items-center justify-center text-white overflow-hidden"
         style={{
           // Gambar background bisa tetap '/team.webp' jika relevan dengan konsep tim outsourcing
-          backgroundImage: "url('/team.webp')",
+          backgroundImage: "url('/hero3.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed', // Efek parallax sederhana
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black"></div>{' '}

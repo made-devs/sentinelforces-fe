@@ -120,13 +120,13 @@ export default function WorkProcessSection() {
     <section
       className="py-16 lg:py-24 font-open-sans relative overflow-hidden"
       style={{
-        backgroundImage: "url('/bodyguard.webp')",
+        backgroundImage: "url('/security7.webp')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
       }}
     >
-      <div className="absolute inset-0 z-[1] bg-black opacity-40"></div>
+      <div className="absolute inset-0 z-[1] bg-black opacity-60"></div>
 
       <div
         ref={sectionContentRef}
