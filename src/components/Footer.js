@@ -1,11 +1,11 @@
-'use client'; // Diperlukan karena kita menggunakan hooks (useRef, useEffect) untuk GSAP
+"use client"; // Diperlukan karena kita menggunakan hooks (useRef, useEffect) untuk GSAP
 
-import React, { useEffect, useRef } from 'react'; // Impor useEffect dan useRef
-import Link from 'next/link';
-import Image from 'next/image';
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
-import { gsap } from 'gsap'; // Impor GSAP
-import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Impor ScrollTrigger
+import React, { useEffect, useRef } from "react"; // Impor useEffect dan useRef
+import Link from "next/link";
+import Image from "next/image";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { gsap } from "gsap"; // Impor GSAP
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // Impor ScrollTrigger
 
 gsap.registerPlugin(ScrollTrigger); // Daftarkan plugin ScrollTrigger
 
@@ -30,15 +30,15 @@ export default function Footer() {
     ];
 
     if (elementsToAnimate.some((el) => !el)) {
-      console.warn('Footer: One or more refs not available for animation.');
+      console.warn("Footer: One or more refs not available for animation.");
       return;
     }
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: footerRef.current, // Pemicu berdasarkan elemen footer utama
-        start: 'top 85%', // Mulai animasi saat 85% bagian atas footer masuk viewport
-        toggleActions: 'play none none none', // Mainkan sekali saat masuk
+        start: "top 85%", // Mulai animasi saat 85% bagian atas footer masuk viewport
+        toggleActions: "play none none none", // Mainkan sekali saat masuk
         // markers: true, // Hilangkan komentar ini untuk debugging posisi trigger
       },
     });
@@ -50,7 +50,7 @@ export default function Footer() {
         opacity: 0,
         y: 50,
         duration: 0.8,
-        ease: 'power3.out',
+        ease: "power3.out",
       },
       0
     ) // Mulai di awal timeline
@@ -60,9 +60,9 @@ export default function Footer() {
           opacity: 0,
           y: 40,
           duration: 0.7,
-          ease: 'power3.out',
+          ease: "power3.out",
         },
-        '-=0.6'
+        "-=0.6"
       ) // Overlap dengan animasi judul CTA
       .from(
         ctaButtonRef.current,
@@ -70,9 +70,9 @@ export default function Footer() {
           opacity: 0,
           scale: 0.5,
           duration: 0.8,
-          ease: 'back.out(1.7)', // Efek sedikit memantul
+          ease: "back.out(1.7)", // Efek sedikit memantul
         },
-        '-=0.5'
+        "-=0.5"
       ); // Overlap dengan animasi paragraf CTA
 
     // 2. Animasi Kolom-Kolom Footer Utama (Staggered)
@@ -85,9 +85,9 @@ export default function Footer() {
           y: 50, // Geser dari bawah
           duration: 0.7,
           stagger: 0.2, // Jeda antar kolom
-          ease: 'power3.out',
+          ease: "power3.out",
         },
-        '-=0.5'
+        "-=0.5"
       ); // Mulai saat animasi tombol CTA sedang berjalan atau setelahnya
     }
 
@@ -105,16 +105,16 @@ export default function Footer() {
       className="relative overflow-hidden py-16 lg:py-20 text-gray-300 font-open-sans"
       style={{
         backgroundImage: "url('/hero.webp')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <div className="absolute inset-0 z-[1] bg-[linear-gradient(to_bottom,rgba(0,0,0,0.6),rgba(0,0,0,0.7),rgba(0,0,0,0.9),rgba(0,0,0,1))]"></div>
 
       {/* Bagian Panggilan Aksi Akhir (CTA Section) */}
       <div className="relative z-[2] py-16 lg:py-24 text-center mb-16">
-        {' '}
+        {" "}
         {/* Mungkin tidak perlu mb-16 jika sudah ada py di footer utama */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2
@@ -131,13 +131,14 @@ export default function Footer() {
             keamanan profesional yang tepat untuk kebutuhan personal atau bisnis
             Anda.
           </p>
-          <Link
-            ref={ctaButtonRef}
-            href="/kontak"
-            className="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-plus-jakarta-sans font-semibold text-lg py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-          >
-            HUBUNGI SENTINEL FORCES
-          </Link>
+          <div ref={ctaButtonRef}>
+            <Link
+              href="/kontak"
+              className="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-plus-jakarta-sans font-semibold text-lg py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              HUBUNGI SENTINEL FORCES
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -149,7 +150,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center md:text-left">
           {/* Kolom 1: Logo & Tagline */}
           <div className="flex flex-col items-center md:items-start footer-column">
-            {' '}
+            {" "}
             {/* Tambah kelas jika ingin seleksi lebih spesifik */}
             <Image
               src="/logo.webp"
@@ -220,7 +221,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3">
               <li>
-                Telepon:{' '}
+                Telepon:{" "}
                 <a
                   href="tel:+6282210000522"
                   className="hover:text-yellow-400 transition-colors duration-300"
@@ -229,7 +230,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                Email:{' '}
+                Email:{" "}
                 <a
                   href="mailto:sentinelforcesofficial@gmail.com"
                   className="hover:text-yellow-400 transition-colors duration-300"

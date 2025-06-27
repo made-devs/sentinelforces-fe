@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link"; // Impor komponen Link
+import Link from "next/link";
 import {
   Bars3Icon,
   XMarkIcon,
@@ -20,7 +20,7 @@ export default function Navbar() {
     { name: "Tentang Kami", href: "/tentang-kami" },
     {
       name: "Layanan",
-      href: "#", // href '#' tetap digunakan untuk item yang hanya membuka dropdown
+      href: "#",
       submenu: [
         {
           name: "Jasa Outsourcing Security",
@@ -39,6 +39,7 @@ export default function Navbar() {
     },
     { name: "Gallery", href: "/gallery" },
     { name: "Kontak", href: "/kontak" },
+    { name: "Blog", href: "/blog" },
   ];
 
   useEffect(() => {
@@ -108,7 +109,6 @@ export default function Navbar() {
   return (
     <header className="py-6 px-4 sm:px-6 lg:px-8 fixed w-full z-30 bg-black/0 bg-gradient-to-t from-transparent to-black/70 font-plus-jakarta-sans transition-all duration-300">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo dan Judul Situs menggunakan Link */}
         <Link href="/" className="flex items-center">
           <Image
             src="/logo.webp"
@@ -142,7 +142,7 @@ export default function Navbar() {
                 className="text-gray-300 hover:text-yellow-400 transition-colors px-3 py-2 rounded-md flex items-center cursor-pointer"
                 onClick={(e) => {
                   if (item.submenu) {
-                    e.preventDefault(); // Mencegah navigasi untuk item dengan submenu
+                    e.preventDefault();
                     handleParentItemClick(item.name, true);
                   }
                 }}
@@ -187,7 +187,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <button className="btn btn-outline text-lg border-yellow-400 bg-yellow-400  hover:bg-yellow-600 text-black hidden md:inline-flex ml-4">
+        <button className="btn btn-outline text-lg border-yellow-400 bg-yellow-400 hover:bg-yellow-600 text-black hidden md:inline-flex ml-4">
           Konsultasi Sekarang
         </button>
 

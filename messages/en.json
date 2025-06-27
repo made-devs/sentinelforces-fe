@@ -1,0 +1,15 @@
+{
+  "Navigation": {
+    "beranda": "Home",
+    "tentang_kami": "About Us",
+    "layanan": "Services",
+    "gallery": "Gallery",
+    "kontak": "Contact",
+    "blog": "Blog",
+    "konsultasi": "Get Consultation",
+    "outsourcing": "Security Outsourcing Services",
+    "bodyguard": "Bodyguard Services",
+    "event_security": "Concert & Event Security Services",
+    "pelatihan": "Security Training Services"
+  }
+}
