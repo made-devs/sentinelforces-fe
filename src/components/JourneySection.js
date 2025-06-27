@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef } from 'react';
-import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useEffect, useRef } from "react";
+import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function JourneySection() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const sectionRef = useRef(null);
@@ -39,7 +39,7 @@ export default function JourneySection() {
 
     if (elements.some((el) => !el)) {
       console.warn(
-        'JourneySection: One or more refs not available for animation.'
+        "JourneySection: One or more refs not available for animation."
       );
       return;
     }
@@ -47,8 +47,8 @@ export default function JourneySection() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
+        start: "top 80%",
+        toggleActions: "play none none none",
       },
     });
 
@@ -59,7 +59,7 @@ export default function JourneySection() {
         y: 60,
         duration: 0.8,
         stagger: 0.2,
-        ease: 'power3.out',
+        ease: "power3.out",
       },
       0
     );
@@ -70,9 +70,9 @@ export default function JourneySection() {
         opacity: 0,
         y: -20,
         duration: 0.6,
-        ease: 'power3.out',
+        ease: "power3.out",
       },
-      '-=0.5'
+      "-=0.5"
     );
 
     tl.from(
@@ -81,9 +81,9 @@ export default function JourneySection() {
         opacity: 0,
         scale: 0.9,
         duration: 0.8,
-        ease: 'power3.out',
+        ease: "power3.out",
       },
-      '-=0.4'
+      "-=0.4"
     );
 
     tl.from(
@@ -92,9 +92,9 @@ export default function JourneySection() {
         opacity: 0,
         y: 30,
         duration: 0.7,
-        ease: 'power3.out',
+        ease: "power3.out",
       },
-      '-=0.6'
+      "-=0.6"
     );
 
     const paragraphs = [paragraph1Ref.current, paragraph2Ref.current].filter(
@@ -108,9 +108,9 @@ export default function JourneySection() {
           y: 25,
           duration: 0.5,
           stagger: 0.2,
-          ease: 'circ.out',
+          ease: "circ.out",
         },
-        '-=0.4'
+        "-=0.4"
       );
     }
 
@@ -121,9 +121,9 @@ export default function JourneySection() {
         y: 20,
         scale: 0.85,
         duration: 0.6,
-        ease: 'back.out(1.7)',
+        ease: "back.out(1.7)",
       },
-      '-=0.3'
+      "-=0.3"
     );
 
     tl.from(
@@ -132,9 +132,9 @@ export default function JourneySection() {
         opacity: 0,
         y: 10,
         duration: 0.8,
-        ease: 'sine.inOut',
+        ease: "sine.inOut",
       },
-      '-=0.5'
+      "-=0.5"
     );
 
     return () => {
@@ -164,7 +164,7 @@ export default function JourneySection() {
             {/* Wrapper gambar sekarang menjadi elemen utama di kolom ini */}
             <div ref={imageWrapperRef}>
               <Image
-                src="/security3.webp"
+                src="/bodyguard1.webp"
                 alt="Layanan Profesional Sentinel Forces"
                 width={600}
                 height={350}
@@ -172,7 +172,7 @@ export default function JourneySection() {
                 priority
                 onError={(e) => {
                   e.currentTarget.src =
-                    'https://placehold.co/600x350/e2e8f0/333333?text=Gagal+Memuat+Gambar';
+                    "https://placehold.co/600x350/e2e8f0/333333?text=Gagal+Memuat+Gambar";
                 }}
               />
             </div>

@@ -1,11 +1,11 @@
-'use client'; // Diperlukan karena kita menggunakan hooks (useRef, useEffect)
+"use client"; // Diperlukan karena kita menggunakan hooks (useRef, useEffect)
 
-import React, { useEffect, useRef } from 'react';
-import Image from 'next/image';
+import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 // Icon react-icons/fa tidak digunakan secara langsung di JSX ini, bisa dihapus jika tidak ada penggunaan lain.
 // import { FaShieldAlt, FaClock, FaUsers, FaStar, FaBolt, FaGlobeAmericas } from 'react-icons/fa';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,7 +37,7 @@ export default function SiapaKamiSection() {
 
     if (elementsToAnimate.some((el) => !el)) {
       console.warn(
-        'SiapaKamiSection: One or more refs not available for animation.'
+        "SiapaKamiSection: One or more refs not available for animation."
       );
       return;
     }
@@ -45,8 +45,8 @@ export default function SiapaKamiSection() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: 'top 75%', // Mulai animasi sedikit lebih awal
-        toggleActions: 'play none none none',
+        start: "top 75%", // Mulai animasi sedikit lebih awal
+        toggleActions: "play none none none",
         // markers: true, // Hilangkan komentar untuk debugging
       },
     });
@@ -58,7 +58,7 @@ export default function SiapaKamiSection() {
         opacity: 0,
         y: 60, // Geser dari bawah
         duration: 0.8,
-        ease: 'power3.out',
+        ease: "power3.out",
         stagger: 0.2, // Kolom kanan muncul sedikit setelah kiri
       },
       0 // Mulai di awal timeline
@@ -69,18 +69,18 @@ export default function SiapaKamiSection() {
     // atau bisa juga "-=0.x" untuk relatif terhadap *akhir* animasi sebelumnya
     tl.from(
       badgeRef.current,
-      { opacity: 0, y: -20, duration: 0.5, ease: 'power2.out' },
-      '-=0.6'
+      { opacity: 0, y: -20, duration: 0.5, ease: "power2.out" },
+      "-=0.6"
     ) // Sesuaikan timing
       .from(
         titleRef.current,
-        { opacity: 0, y: -20, duration: 0.6, ease: 'power2.out' },
-        '-=0.4'
+        { opacity: 0, y: -20, duration: 0.6, ease: "power2.out" },
+        "-=0.4"
       )
       .from(
         paragraphRef.current,
-        { opacity: 0, y: 20, duration: 0.7, ease: 'power2.out' },
-        '-=0.4'
+        { opacity: 0, y: 20, duration: 0.7, ease: "power2.out" },
+        "-=0.4"
       );
 
     const listItems = gsap.utils.toArray(listContainerRef.current.children);
@@ -92,9 +92,9 @@ export default function SiapaKamiSection() {
           x: -30, // Geser dari kiri
           duration: 0.5,
           stagger: 0.15,
-          ease: 'power2.out',
+          ease: "power2.out",
         },
-        '-=0.5'
+        "-=0.5"
       );
     }
 
@@ -105,9 +105,9 @@ export default function SiapaKamiSection() {
         scale: 0.8,
         y: 10,
         duration: 0.6,
-        ease: 'back.out(1.7)',
+        ease: "back.out(1.7)",
       },
-      '-=0.3'
+      "-=0.3"
     );
 
     // 3. Animasi Gambar di Kolom Kanan (muncul bersamaan atau setelah kolom kanan)
@@ -118,9 +118,9 @@ export default function SiapaKamiSection() {
         opacity: 0,
         scale: 0.9,
         duration: 0.9,
-        ease: 'power3.out',
+        ease: "power3.out",
       },
-      '-=1.2'
+      "-=1.2"
     ); // Sesuaikan timing agar sinkron dengan teks kiri, atau setelah kolom kanan mulai
 
     // 4. Animasi Border Bawah
@@ -130,9 +130,9 @@ export default function SiapaKamiSection() {
         opacity: 0,
         y: 30,
         duration: 0.8,
-        ease: 'sine.out',
+        ease: "sine.out",
       },
-      '-=0.5'
+      "-=0.5"
     ); // Muncul menjelang akhir
 
     return () => {
@@ -238,6 +238,67 @@ export default function SiapaKamiSection() {
                   bodyguard pribadi, hingga pengamanan konser dan event.
                 </span>
               </li>
+              <li className="flex items-start">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 text-yellow-400 mr-2 flex-shrink-0 mt-1"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>
+                  Siap merespons cepat kondisi darurat dan ancaman dengan
+                  pendekatan taktis yang efektif dan aman.
+                </span>
+              </li>
+              <li className="flex items-start">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 text-yellow-400 mr-2 flex-shrink-0 mt-1"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>
+                  Dipercaya oleh berbagai klien dari kalangan atas dan memiliki
+                  rekam jejak pelayanan yang sukses.
+                </span>
+              </li>
+              <li className="flex items-start">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 text-yellow-400 mr-2 flex-shrink-0 mt-1"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>
+                  Berpengalaman menangani klien VIP, pejabat, pengusaha, hingga
+                  selebriti. serta Menjaga kerahasiaan, disiplin tinggi, dan
+                  siap bertugas 24 jam.
+                </span>
+              </li>
             </ul>
 
             <div ref={ctaButtonRef} className="mt-10">
@@ -252,10 +313,10 @@ export default function SiapaKamiSection() {
 
           {/* Kolom Kanan: Gambar */}
           <div ref={rightColumnRef} className="mt-8 lg:mt-0">
-            {' '}
+            {" "}
             {/* Tambahkan ref pada wrapper kolom kanan */}
             <div ref={imageWrapperRef}>
-              {' '}
+              {" "}
               {/* Tambahkan wrapper untuk gambar agar animasi lebih mudah */}
               <Image
                 src="/security8.webp"
@@ -266,7 +327,7 @@ export default function SiapaKamiSection() {
                 priority // Pertimbangkan jika gambar ini penting untuk LCP
                 onError={(e) => {
                   e.currentTarget.src =
-                    'https://placehold.co/600x400/262626/888888?text=Image+Placeholder';
+                    "https://placehold.co/600x400/262626/888888?text=Image+Placeholder";
                 }}
               />
             </div>
@@ -285,7 +346,7 @@ export default function SiapaKamiSection() {
           height={100}
           className="w-full h-auto block"
           onError={(e) => {
-            e.currentTarget.src = '/placeholder-image.webp';
+            e.currentTarget.src = "/placeholder-image.webp";
           }}
         />
       </div>
