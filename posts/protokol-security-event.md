@@ -3,7 +3,7 @@ title: "Protokol Keamanan Event di Bali: Panduan Lengkap untuk Event Organizer"
 date: "2025-06-25"
 excerpt: "Panduan komprehensif protokol keamanan untuk berbagai jenis event di Bali. Tips dari ahli security untuk memastikan acara berjalan aman dan sukses."
 category: "Event Security"
-image: "/images/blog/event-security-bali.jpg"
+image: "/blog/blog3.webp"
 author: "Tim Security Sentinel Forces"
 tags:
   [

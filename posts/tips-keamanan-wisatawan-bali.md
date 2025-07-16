@@ -3,7 +3,7 @@ title: "10 Tips Keamanan Penting untuk Wisatawan di Bali"
 date: "2025-06-27"
 excerpt: "Panduan lengkap menjaga keamanan dan keselamatan selama berlibur di Pulau Dewata. Tips praktis dari ahli security profesional."
 category: "Tips Keamanan"
-image: "/images/blog/tips-keamanan-bali.jpg"
+image: "/blog/blog1.webp"
 author: "Tim Security Sentinel Forces"
 tags: ["wisatawan", "keamanan", "bali", "tips", "travel safety"]
 ---

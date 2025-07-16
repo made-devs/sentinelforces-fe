@@ -3,7 +3,7 @@ title: "Cara Memilih Bodyguard Profesional di Bali: Panduan Lengkap"
 date: "2025-06-26"
 excerpt: "Panduan komprehensif memilih jasa bodyguard terpercaya di Bali. Tips dari ahli security untuk mendapatkan perlindungan personal terbaik."
 category: "Panduan Security"
-image: "/images/blog/bodyguard-professional.jpg"
+image: "/blog/blog2.webp"
 author: "Tim Security Sentinel Forces"
 tags: ["bodyguard", "security", "bali", "panduan", "personal protection"]
 ---

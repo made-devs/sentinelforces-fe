@@ -4,8 +4,8 @@ export default function BlogHero() {
       className="relative h-[50vh] flex items-center justify-center text-white overflow-hidden"
       style={{
         backgroundImage: "url('/hero4.webp')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundSize: "",
+        backgroundPosition: "",
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black"></div>
