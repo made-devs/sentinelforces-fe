@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Footer from '@/components/Footer'; // Asumsikan Footer ada di path ini
-import Navbar from '@/components/Navbar'; // Asumsikan Navbar ada di path ini
-import React from 'react';
-import OutsourcingOverview from '../../components/outsourcing-security/OutsourcingOverview';
-import OutsourcingBenefit from '../../components/outsourcing-security/OutsourcingBenefit';
-import OutsourcingProcess from '../../components/outsourcing-security/OutsourcingProcess';
+import Footer from "@/components/Footer"; // Asumsikan Footer ada di path ini
+import Navbar from "@/components/Navbar"; // Asumsikan Navbar ada di path ini
+import React from "react";
+import OutsourcingOverview from "../../components/outsourcing-security/OutsourcingOverview";
+import OutsourcingBenefit from "../../components/outsourcing-security/OutsourcingBenefit";
+import OutsourcingProcess from "../../components/outsourcing-security/OutsourcingProcess";
 
 export default function OutsourcingPage() {
   return (
@@ -16,11 +16,11 @@ export default function OutsourcingPage() {
         style={{
           // Gambar background bisa tetap '/team.webp' jika relevan dengan konsep tim outsourcing
           backgroundImage: "url('/hero3.webp')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black"></div>{' '}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black"></div>{" "}
         {/* Overlay gelap */}
         <div className="relative z-10 text-center container mx-auto px-4 font-open-sans">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-plus-jakarta-sans leading-tight">
