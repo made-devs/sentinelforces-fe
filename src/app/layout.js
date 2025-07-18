@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { Plus_Jakarta_Sans, Open_Sans } from "next/font/google";
 
 export const plusJakartaSans = Plus_Jakarta_Sans({
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
         className={`${plusJakartaSans.variable} ${openSans.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
