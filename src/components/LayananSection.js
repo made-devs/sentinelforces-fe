@@ -314,19 +314,6 @@ export default function Layanan() {
           />
         </svg>
       </button>
-
-      <div
-        ref={bottomBorderRef}
-        className="absolute bottom-[-3rem] left-0 w-full z-10"
-      >
-        <Image
-          src="/border-white.webp"
-          alt="Section Divider"
-          width={1920}
-          height={100}
-          className="w-full h-auto block"
-        />
-      </div>
     </section>
   );
 }

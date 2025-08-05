@@ -187,9 +187,13 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <button className="btn btn-outline text-lg border-yellow-400 bg-yellow-400 hover:bg-yellow-600 text-black hidden md:inline-flex ml-4">
+        {/* Tombol CTA diubah menjadi Link */}
+        <Link
+          href="/kontak"
+          className="btn btn-outline text-lg border-yellow-400 bg-yellow-400 hover:bg-yellow-600 text-black hidden md:inline-flex ml-4"
+        >
           Konsultasi Sekarang
-        </button>
+        </Link>
 
         <div className="md:hidden">
           <button
@@ -241,12 +245,14 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            <button
+            {/* Tombol CTA Mobile diubah menjadi Link */}
+            <Link
+              href="/kontak"
               className="btn btn-warning text-black w-3/4 mt-4"
               onClick={handleDropdownItemClick}
             >
               Konsultasi Sekarang
-            </button>
+            </Link>
           </nav>
         </div>
       )}
