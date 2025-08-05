@@ -102,10 +102,9 @@ export default function Layanan() {
       console.warn(
         "LayananSection: One or more refs not available for animation."
       );
-      // return; // Bisa di-return jika tidak ingin melanjutkan tanpa semua ref
     }
 
-    let buttonScrollTriggerInstance; // Untuk menyimpan instance ST tombol
+    let buttonScrollTriggerInstance;
     const buttonElement = scrollTopButtonRef.current;
 
     if (buttonElement) {
@@ -115,7 +114,6 @@ export default function Layanan() {
         start: "top -300px",
         end: "bottom bottom",
         onUpdate: (self) => {
-          // Menggunakan window.scrollY untuk cek posisi scroll saat onUpdate
           if (window.scrollY > 300) {
             gsap.to(buttonElement, {
               opacity: 1,
@@ -130,8 +128,6 @@ export default function Layanan() {
             });
           }
         },
-        // Menghapus onEnter dan onLeaveBack karena onUpdate sudah menangani logikanya
-        // Jika ingin tetap menggunakan onEnter/onLeaveBack, pastikan logikanya tidak konflik
       });
     }
 
@@ -140,7 +136,6 @@ export default function Layanan() {
         trigger: sectionRef.current,
         start: "top 80%",
         toggleActions: "play none none none",
-        // markers: true,
       },
     });
 
@@ -202,9 +197,9 @@ export default function Layanan() {
     }
 
     return () => {
-      if (tl) tl.kill(); // Membunuh timeline utama dan ST yang terkait dengannya
-      if (buttonScrollTriggerInstance) buttonScrollTriggerInstance.kill(); // Membunuh ST tombol secara spesifik
-      if (buttonElement) gsap.killTweensOf(buttonElement); // Membunuh tween pada tombol
+      if (tl) tl.kill();
+      if (buttonScrollTriggerInstance) buttonScrollTriggerInstance.kill();
+      if (buttonElement) gsap.killTweensOf(buttonElement);
     };
   }, []);
 
@@ -242,6 +237,7 @@ export default function Layanan() {
                     src={service.image}
                     alt={service.name}
                     fill
+                    // Menambahkan prop sizes untuk optimasi
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     style={{ objectFit: "cover" }}
                     onError={(e) => {
@@ -295,9 +291,9 @@ export default function Layanan() {
       <button
         ref={scrollTopButtonRef}
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 bg-yellow-400 hover:bg-yellow-500 text-black p-3 rounded-full shadow-lg z-20" // Hapus transition-opacity, GSAP akan mengontrolnya
+        className="fixed bottom-8 right-8 bg-yellow-400 hover:bg-yellow-500 text-black p-3 rounded-full shadow-lg z-20"
         aria-label="Kembali ke atas"
-        style={{ opacity: 0, pointerEvents: "none" }} // Mulai dengan tersembunyi
+        style={{ opacity: 0, pointerEvents: "none" }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -314,6 +310,19 @@ export default function Layanan() {
           />
         </svg>
       </button>
+
+      <div
+        ref={bottomBorderRef}
+        className="absolute bottom-[-3rem] left-0 w-full z-10"
+      >
+        <Image
+          src="/border-white.webp"
+          alt="Section Divider"
+          width={1920}
+          height={100}
+          className="w-full h-auto block"
+        />
+      </div>
     </section>
   );
 }

@@ -147,27 +147,25 @@ export default function JourneySection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-white py-24 lg:py-32 text-neutral-800" // Menambah padding atas dan bawah
+      className="bg-white py-24 lg:py-32 text-neutral-800"
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 'items-center' ini penting untuk menyejajarkan kedua kolom secara vertikal */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Kolom Kiri (SUDAH DIPERBAIKI) */}
           <div ref={leftColumnRef} className="relative">
-            {/* Teks badge sekarang diposisikan secara absolut */}
             <div ref={badgeTextRef} className="absolute -top-10 left-0 z-10">
               <span className="text-sm font-semibold text-yellow-500 tracking-wider uppercase">
                 Berintegritas & PROFESSIONAL
               </span>
             </div>
 
-            {/* Wrapper gambar sekarang menjadi elemen utama di kolom ini */}
             <div ref={imageWrapperRef}>
               <Image
                 src="/bodyguard1.webp"
                 alt="Layanan Profesional Sentinel Forces"
                 width={600}
                 height={350}
+                // Menambahkan prop sizes untuk optimasi
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="w-full h-auto rounded-lg shadow-lg object-cover"
                 priority
                 onError={(e) => {
@@ -178,7 +176,6 @@ export default function JourneySection() {
             </div>
           </div>
 
-          {/* Kolom Kanan */}
           <div
             ref={rightColumnRef}
             className="bg-orange-50 p-8 lg:p-12 rounded-lg shadow-xl relative overflow-hidden font-open-sans"
@@ -214,7 +211,6 @@ export default function JourneySection() {
                 KONSULTASI SEKARANG
               </button>
             </div>
-            {/* Elemen Dekoratif Garis Bergelombang */}
             <div
               ref={svgWavesRef}
               className="absolute bottom-0 left-0 right-0 h-20 z-0"
