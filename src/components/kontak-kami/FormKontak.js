@@ -1,18 +1,16 @@
-'use client';
+"use client";
 
-import React, { useRef } from 'react';
-import Image from 'next/image'; // Import Image component
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa'; // Ikon untuk informasi kontak
+import React, { useRef } from "react";
+import Image from "next/image";
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from "react-icons/fa";
 
 export default function ContactUsSection() {
-  // Refs untuk input form
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const phoneRef = useRef(null);
   const serviceRef = useRef(null);
   const messageRef = useRef(null);
 
-  // Fungsi untuk menangani submit form ke WhatsApp
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -22,18 +20,19 @@ export default function ContactUsSection() {
     const service = serviceRef.current.value;
     const message = messageRef.current.value;
 
-    const whatsappNumber = '6281234567890'; // GANTI DENGAN NOMOR ASLI ANDA!
+    // Nomor WhatsApp diubah sesuai permintaan
+    const whatsappNumber = "6282210000522";
 
     const whatsappMessage = `
 Halo Admin Sentinel Forces,
 
-Saya ingin bertanya tentang layanan: *${service || 'Tidak Disebutkan'}*
+Saya ingin bertanya tentang layanan: *${service || "Tidak Disebutkan"}*
 
-Nama Lengkap: *${name || '-'}*
-Email: *${email || '-'}*
-Nomor Telepon: *${phone || '-'}*
+Nama Lengkap: *${name || "-"}*
+Email: *${email || "-"}*
+Nomor Telepon: *${phone || "-"}*
 Pesan:
-${message || '-'}
+${message || "-"}
 
 Terima kasih.
     `.trim();
@@ -41,16 +40,14 @@ Terima kasih.
     const encodedMessage = encodeURIComponent(whatsappMessage);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-    window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, "_blank");
     event.target.reset();
   };
 
   return (
     <section className="bg-black py-16 lg:py-24 font-open-sans relative overflow-hidden">
-      {/* Overlay Gelap di atas background image */}
       <div className="absolute inset-0 z-[1] bg-black opacity-60"></div>
 
-      {/* Konten Utama Section (termasuk judul, paragraf intro, dan kartu kontak/form) */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-[2] text-white">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-plus-jakarta-sans mb-8 text-center">
           Bagaimana Kami Dapat Membantu Anda?
@@ -61,21 +58,18 @@ Terima kasih.
           kebutuhan spesifik Anda.
         </p>
 
-        {/* Main Contact Card - Menggabungkan informasi kontak dan formulir */}
         <div className="bg-neutral-800 p-8 lg:p-12 rounded-lg shadow-2xl max-w-4xl mx-auto">
-          {/* Grid dua kolom di dalam kartu utama */}
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {/* Kolom Kiri: Informasi Kontak Langsung */}
             <div className="space-y-8 flex flex-col items-center justify-center text-center md:text-left">
               <Image
-                src="/bodyguard1.webp" // <-- Ganti dengan URL gambar bodyguard/perlindungan yang relevan
-                alt="Bodyguard Profesional Sentinel Forces" // Deskripsi alt text
-                width={600} // Sesuaikan lebar intrinsik gambar Anda
-                height={400} // Sesuaikan tinggi intrinsik gambar Anda
+                src="/bodyguard1.webp"
+                alt="Bodyguard Profesional Sentinel Forces"
+                width={600}
+                height={400}
                 className="w-full h-auto rounded-lg shadow-xl object-cover"
                 onError={(e) => {
                   e.currentTarget.src =
-                    'https://placehold.co/600x400/262626/888888?text=Bodyguard+Image';
+                    "https://placehold.co/600x400/262626/888888?text=Bodyguard+Image";
                 }}
               />
               <h3 className="text-2xl font-semibold text-yellow-400 font-plus-jakarta-sans mb-4">
@@ -85,7 +79,7 @@ Terima kasih.
                 <div className="flex items-center justify-center md:justify-start">
                   <FaPhone className="w-6 h-6 text-yellow-400 mr-3 flex-shrink-0" />
                   <span>
-                    Telepon:{' '}
+                    Telepon:{" "}
                     <a
                       href="tel:+6282210000522"
                       className="hover:text-yellow-400"
@@ -97,7 +91,7 @@ Terima kasih.
                 <div className="flex items-center justify-center md:justify-start">
                   <FaEnvelope className="w-6 h-6 text-yellow-400 mr-3 flex-shrink-0" />
                   <span>
-                    Email:{' '}
+                    Email:{" "}
                     <a
                       href="mailto:sentinelforcesofficial@gmail.com"
                       className="hover:text-yellow-400"
@@ -120,7 +114,6 @@ Terima kasih.
               </div>
             </div>
 
-            {/* Kolom Kanan: Formulir Kontak */}
             <div>
               <h3 className="text-2xl font-semibold text-yellow-400 font-plus-jakarta-sans mb-6 text-center">
                 Kirim Pesan kepada Kami
@@ -132,8 +125,7 @@ Terima kasih.
                     className="block text-gray-300 text-sm font-bold mb-2 text-left"
                   >
                     Nama Lengkap
-                  </label>{' '}
-                  {/* text-left untuk label */}
+                  </label>
                   <input
                     ref={nameRef}
                     type="text"
@@ -150,8 +142,7 @@ Terima kasih.
                     className="block text-gray-300 text-sm font-bold mb-2 text-left"
                   >
                     Email
-                  </label>{' '}
-                  {/* text-left untuk label */}
+                  </label>
                   <input
                     ref={emailRef}
                     type="email"
@@ -168,8 +159,7 @@ Terima kasih.
                     className="block text-gray-300 text-sm font-bold mb-2 text-left"
                   >
                     Nomor Telepon
-                  </label>{' '}
-                  {/* text-left untuk label */}
+                  </label>
                   <input
                     ref={phoneRef}
                     type="tel"
@@ -185,8 +175,7 @@ Terima kasih.
                     className="block text-gray-300 text-sm font-bold mb-2 text-left"
                   >
                     Jenis Layanan yang Diminati
-                  </label>{' '}
-                  {/* text-left untuk label */}
+                  </label>
                   <select
                     ref={serviceRef}
                     id="service"
@@ -212,8 +201,7 @@ Terima kasih.
                     className="block text-gray-300 text-sm font-bold mb-2 text-left"
                   >
                     Pesan Anda
-                  </label>{' '}
-                  {/* text-left untuk label */}
+                  </label>
                   <textarea
                     ref={messageRef}
                     id="message"

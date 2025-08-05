@@ -2,16 +2,13 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link"; // Import Link
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function JourneySection() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   const sectionRef = useRef(null);
   const leftColumnRef = useRef(null);
   const rightColumnRef = useRef(null);
@@ -164,7 +161,6 @@ export default function JourneySection() {
                 alt="Layanan Profesional Sentinel Forces"
                 width={600}
                 height={350}
-                // Menambahkan prop sizes untuk optimasi
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="w-full h-auto rounded-lg shadow-lg object-cover"
                 priority
@@ -203,13 +199,14 @@ export default function JourneySection() {
                   maksimal.
                 </p>
               </div>
-              <button
+              {/* Tombol diubah menjadi Link ke halaman kontak */}
+              <Link
+                href="/kontak"
                 ref={buttonRef}
-                onClick={scrollToTop}
                 className="btn bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 rounded-md font-extrabold font-plus-jakarta-sans"
               >
                 KONSULTASI SEKARANG
-              </button>
+              </Link>
             </div>
             <div
               ref={svgWavesRef}

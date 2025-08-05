@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link"; // Import Link
 import {
   FaClock,
   FaUsers,
@@ -22,6 +23,7 @@ export default function Layanan() {
       description:
         "Security Sentinel Forces adalah layanan pengamanan khusus yang terdiri dari personel bersertifikat resmi GADA PRATAMA dan GADA UTAMA, serta dibekali pelatihan fisik dan mental yang intensif untuk menghadapi berbagai bentuk ancaman",
       image: "/security4.webp",
+      href: "/outsourcing-security", // Link untuk layanan Security
       features: [
         "Personel Bersertifikat GADA PRATAMA & GADA UTAMA",
         "Petugas Keamanan Profesional",
@@ -37,6 +39,7 @@ export default function Layanan() {
       description:
         "Perlindungan personal premium dengan personel berpengalaman, terlatih dalam taktik perlindungan VIP serta kemampuan bela diri.",
       image: "/security3.webp",
+      href: "/bodyguard", // Link untuk layanan Bodyguard
       features: [
         "Pelatihan Lapangan Bersama Range 19",
         "Personel Berpengalaman & Terlatih",
@@ -52,6 +55,7 @@ export default function Layanan() {
       description:
         "Layanan pengamanan event skala kecil hingga besar dengan pendekatan profesional, terstruktur, dan respons cepat terhadap potensi gangguan.",
       image: "/security5.webp",
+      href: "/event-security", // Link untuk layanan Pengamanan Event
       features: [
         "Pelatihan Lapangan Bersama Range 19",
         "Pengendalian Massa Efektif",
@@ -67,6 +71,7 @@ export default function Layanan() {
       description:
         "Program pelatihan eksklusif untuk meningkatkan kualitas dan profesionalisme tenaga keamanan, bekerja sama dengan Range 19 USA.",
       image: "/security6.webp",
+      href: "/pelatihan-security", // Link untuk layanan Pelatihan Security
       features: [
         "Kurikulum Berstandar Internasional",
         "Instruktur Berpengalaman (Range 19 USA)",
@@ -168,6 +173,7 @@ export default function Layanan() {
     if (gridContainerRef.current) {
       const cards = gsap.utils.toArray(gridContainerRef.current.children);
       if (cards.length > 0) {
+        gsap.set(cards, { willChange: "transform, opacity" });
         tl.from(
           cards,
           {
@@ -177,6 +183,9 @@ export default function Layanan() {
             duration: 0.7,
             stagger: 0.15,
             ease: "power3.out",
+            onComplete: () => {
+              gsap.set(cards, { clearProps: "will-change" });
+            },
           },
           "-=0.5"
         );
@@ -237,7 +246,6 @@ export default function Layanan() {
                     src={service.image}
                     alt={service.name}
                     fill
-                    // Menambahkan prop sizes untuk optimasi
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     style={{ objectFit: "cover" }}
                     onError={(e) => {
@@ -279,9 +287,13 @@ export default function Layanan() {
                       </li>
                     ))}
                   </ul>
-                  <button className="btn bg-yellow-400 hover:bg-yellow-500 text-black w-full py-2.5 rounded-md uppercase font-plus-jakarta-sans font-semibold text-md mt-auto">
+                  {/* Tombol diubah menjadi Link */}
+                  <Link
+                    href={service.href}
+                    className="btn bg-yellow-400 hover:bg-yellow-500 text-black w-full py-2.5 rounded-md uppercase font-plus-jakarta-sans font-semibold text-md mt-auto"
+                  >
                     Konsultasi Sekarang
-                  </button>
+                  </Link>
                 </div>
               </div>
             );
@@ -298,7 +310,7 @@ export default function Layanan() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
-          viewBox="0 0 24 24"
+          viewBox="0 0 24"
           strokeWidth={2.5}
           stroke="currentColor"
           className="w-5 h-5"
