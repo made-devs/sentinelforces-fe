@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useRef } from "react";
-import Image from "next/image";
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from "react-icons/fa";
+import React, { useRef } from 'react';
+import Image from 'next/image';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 
 export default function ContactUsSection() {
   const nameRef = useRef(null);
@@ -21,18 +21,18 @@ export default function ContactUsSection() {
     const message = messageRef.current.value;
 
     // Nomor WhatsApp diubah sesuai permintaan
-    const whatsappNumber = "6282210000522";
+    const whatsappNumber = '6282210000522';
 
     const whatsappMessage = `
 Halo Admin Sentinel Forces,
 
-Saya ingin bertanya tentang layanan: *${service || "Tidak Disebutkan"}*
+Saya ingin bertanya tentang layanan: *${service || 'Tidak Disebutkan'}*
 
-Nama Lengkap: *${name || "-"}*
-Email: *${email || "-"}*
-Nomor Telepon: *${phone || "-"}*
+Nama Lengkap: *${name || '-'}*
+Email: *${email || '-'}*
+Nomor Telepon: *${phone || '-'}*
 Pesan:
-${message || "-"}
+${message || '-'}
 
 Terima kasih.
     `.trim();
@@ -40,7 +40,7 @@ Terima kasih.
     const encodedMessage = encodeURIComponent(whatsappMessage);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-    window.open(whatsappUrl, "_blank");
+    window.open(whatsappUrl, '_blank');
     event.target.reset();
   };
 
@@ -69,7 +69,7 @@ Terima kasih.
                 className="w-full h-auto rounded-lg shadow-xl object-cover"
                 onError={(e) => {
                   e.currentTarget.src =
-                    "https://placehold.co/600x400/262626/888888?text=Bodyguard+Image";
+                    'https://placehold.co/600x400/262626/888888?text=Bodyguard+Image';
                 }}
               />
               <h3 className="text-2xl font-semibold text-yellow-400 font-plus-jakarta-sans mb-4">
@@ -79,7 +79,7 @@ Terima kasih.
                 <div className="flex items-center justify-center md:justify-start">
                   <FaPhone className="w-6 h-6 text-yellow-400 mr-3 flex-shrink-0" />
                   <span>
-                    Telepon:{" "}
+                    Telepon:{' '}
                     <a
                       href="tel:+6282210000522"
                       className="hover:text-yellow-400"
@@ -91,7 +91,7 @@ Terima kasih.
                 <div className="flex items-center justify-center md:justify-start">
                   <FaEnvelope className="w-6 h-6 text-yellow-400 mr-3 flex-shrink-0" />
                   <span>
-                    Email:{" "}
+                    Email:{' '}
                     <a
                       href="mailto:sentinelforcesofficial@gmail.com"
                       className="hover:text-yellow-400"
@@ -109,7 +109,7 @@ Terima kasih.
                 </div>
                 <div className="flex items-center justify-center md:justify-start">
                   <FaClock className="w-6 h-6 text-yellow-400 mr-3 flex-shrink-0" />
-                  <span>Jam Operasional: Senin - Jumat, 09.00 - 17.00 WIB</span>
+                  <span>Jam Operasional: Senin - Sabtu, 09.00 - 17.00 WIB</span>
                 </div>
               </div>
             </div>

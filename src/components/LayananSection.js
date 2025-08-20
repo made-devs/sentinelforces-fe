@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef } from "react";
-import Image from "next/image";
-import Link from "next/link"; // Import Link
+import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link'; // Import Link
 import {
   FaClock,
   FaUsers,
@@ -10,81 +10,81 @@ import {
   FaBolt,
   FaGlobeAmericas,
   FaShieldAlt,
-} from "react-icons/fa";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+} from 'react-icons/fa';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Layanan() {
   const servicesData = [
     {
-      name: "Security",
+      name: 'Security',
       description:
-        "Security Sentinel Forces adalah layanan pengamanan khusus yang terdiri dari personel bersertifikat resmi GADA PRATAMA dan GADA UTAMA, serta dibekali pelatihan fisik dan mental yang intensif untuk menghadapi berbagai bentuk ancaman",
-      image: "/security4.webp",
-      href: "/outsourcing-security", // Link untuk layanan Security
+        'Security Sentinel Forces adalah layanan pengamanan khusus yang terdiri dari personel bersertifikat resmi GADA PRATAMA dan GADA UTAMA, serta dibekali pelatihan fisik dan mental yang intensif untuk menghadapi berbagai bentuk ancaman',
+      image: '/security4.webp',
+      href: '/outsourcing-security', // Link untuk layanan Security
       features: [
-        "Personel Bersertifikat GADA PRATAMA & GADA UTAMA",
-        "Petugas Keamanan Profesional",
-        "Selalu Tepat Waktu & Efisien",
-        "Pelatihan Bela Diri & Taktikal Khusus",
-        "Pengalaman Keamanan Personal",
-        "Prioritas Privasi & Keamanan",
-        "Penampilan Rapi, Disiplin & Ramah Klien",
+        'Personel Bersertifikat GADA PRATAMA & GADA UTAMA',
+        'Petugas Keamanan Profesional',
+        'Selalu Tepat Waktu & Efisien',
+        'Pelatihan Bela Diri & Taktikal Khusus',
+        'Pengalaman Keamanan Personal',
+        'Prioritas Privasi & Keamanan',
+        'Penampilan Rapi, Disiplin & Ramah Klien',
       ],
     },
     {
-      name: "Bodyguard",
+      name: 'Bodyguard',
       description:
-        "Perlindungan personal premium dengan personel berpengalaman, terlatih dalam taktik perlindungan VIP serta kemampuan bela diri.",
-      image: "/security3.webp",
-      href: "/bodyguard", // Link untuk layanan Bodyguard
+        'Perlindungan personal premium dengan personel berpengalaman, terlatih dalam taktik perlindungan VIP serta kemampuan bela diri.',
+      image: '/security3.webp',
+      href: '/bodyguard', // Link untuk layanan Bodyguard
       features: [
-        "Pelatihan Lapangan Bersama Range 19",
-        "Personel Berpengalaman & Terlatih",
-        "Taktik Perlindungan VIP Canggih",
-        "Kemampuan Bela Diri Tingkat Tinggi",
-        "Respons Cepat & Proaktif",
-        "Jaminan Keamanan Personal Maksimal",
-        "Penampilan Rapi, Disiplin & Ramah Klien",
+        'Pelatihan Lapangan Bersama Range 19',
+        'Personel Berpengalaman & Terlatih',
+        'Taktik Perlindungan VIP Canggih',
+        'Kemampuan Bela Diri Tingkat Tinggi',
+        'Respons Cepat & Proaktif',
+        'Jaminan Keamanan Personal Maksimal',
+        'Penampilan Rapi, Disiplin & Ramah Klien',
       ],
     },
     {
-      name: "Pengamanan Event",
+      name: 'Pengamanan Event',
       description:
-        "Layanan pengamanan event skala kecil hingga besar dengan pendekatan profesional, terstruktur, dan respons cepat terhadap potensi gangguan.",
-      image: "/security5.webp",
-      href: "/event-security", // Link untuk layanan Pengamanan Event
+        'Layanan pengamanan event skala kecil hingga besar dengan pendekatan profesional, terstruktur, dan respons cepat terhadap potensi gangguan.',
+      image: '/security5.webp',
+      href: '/event-security', // Link untuk layanan Pengamanan Event
       features: [
-        "Pelatihan Lapangan Bersama Range 19",
-        "Pengendalian Massa Efektif",
-        "Pengamanan Artis & VIP Terstruktur",
-        "Analisis Risiko & Perencanaan Detail",
-        "Respons Cepat Terhadap Gangguan",
-        "Lingkungan Acara yang Aman & Terkendali",
-        "Respon cepat & Proaktif",
+        'Pelatihan Lapangan Bersama Range 19',
+        'Pengendalian Massa Efektif',
+        'Pengamanan Artis & VIP Terstruktur',
+        'Analisis Risiko & Perencanaan Detail',
+        'Respons Cepat Terhadap Gangguan',
+        'Lingkungan Acara yang Aman & Terkendali',
+        'Respon cepat & Proaktif',
       ],
     },
-    {
-      name: "Pelatihan Security",
-      description:
-        "Program pelatihan eksklusif untuk meningkatkan kualitas dan profesionalisme tenaga keamanan, bekerja sama dengan Range 19 USA.",
-      image: "/security6.webp",
-      href: "/pelatihan-security", // Link untuk layanan Pelatihan Security
-      features: [
-        "Kurikulum Berstandar Internasional",
-        "Instruktur Berpengalaman (Range 19 USA)",
-        "Pelatihan Beladiri",
-        "Pengembangan Profesional Tenaga Keamanan",
-        "Pelatihan Bahasa Inggris",
-        "Materi Taktis dan Keamanan Terbaru",
-      ],
-    },
+    // {
+    //   name: "Pelatihan Security",
+    //   description:
+    //     "Program pelatihan eksklusif untuk meningkatkan kualitas dan profesionalisme tenaga keamanan, bekerja sama dengan Range 19 USA.",
+    //   image: "/security6.webp",
+    //   href: "/pelatihan-security", // Link untuk layanan Pelatihan Security
+    //   features: [
+    //     "Kurikulum Berstandar Internasional",
+    //     "Instruktur Berpengalaman (Range 19 USA)",
+    //     "Pelatihan Beladiri",
+    //     "Pengembangan Profesional Tenaga Keamanan",
+    //     "Pelatihan Bahasa Inggris",
+    //     "Materi Taktis dan Keamanan Terbaru",
+    //   ],
+    // },
   ];
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const sectionRef = useRef(null);
@@ -105,7 +105,7 @@ export default function Layanan() {
 
     if (!allRefsAvailable) {
       console.warn(
-        "LayananSection: One or more refs not available for animation."
+        'LayananSection: One or more refs not available for animation.'
       );
     }
 
@@ -113,22 +113,22 @@ export default function Layanan() {
     const buttonElement = scrollTopButtonRef.current;
 
     if (buttonElement) {
-      gsap.set(buttonElement, { opacity: 0, pointerEvents: "none" });
+      gsap.set(buttonElement, { opacity: 0, pointerEvents: 'none' });
       buttonScrollTriggerInstance = ScrollTrigger.create({
-        trigger: "body",
-        start: "top -300px",
-        end: "bottom bottom",
+        trigger: 'body',
+        start: 'top -300px',
+        end: 'bottom bottom',
         onUpdate: (self) => {
           if (window.scrollY > 300) {
             gsap.to(buttonElement, {
               opacity: 1,
-              pointerEvents: "auto",
+              pointerEvents: 'auto',
               duration: 0.3,
             });
           } else {
             gsap.to(buttonElement, {
               opacity: 0,
-              pointerEvents: "none",
+              pointerEvents: 'none',
               duration: 0.3,
             });
           }
@@ -139,8 +139,8 @@ export default function Layanan() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 80%",
-        toggleActions: "play none none none",
+        start: 'top 80%',
+        toggleActions: 'play none none none',
       },
     });
 
@@ -151,7 +151,7 @@ export default function Layanan() {
           opacity: 0,
           y: -30,
           duration: 0.6,
-          ease: "power2.out",
+          ease: 'power2.out',
         },
         0
       );
@@ -164,16 +164,16 @@ export default function Layanan() {
           opacity: 0,
           y: -30,
           duration: 0.8,
-          ease: "power2.out",
+          ease: 'power2.out',
         },
-        "-=0.4"
+        '-=0.4'
       );
     }
 
     if (gridContainerRef.current) {
       const cards = gsap.utils.toArray(gridContainerRef.current.children);
       if (cards.length > 0) {
-        gsap.set(cards, { willChange: "transform, opacity" });
+        gsap.set(cards, { willChange: 'transform, opacity' });
         tl.from(
           cards,
           {
@@ -182,12 +182,12 @@ export default function Layanan() {
             scale: 0.95,
             duration: 0.7,
             stagger: 0.15,
-            ease: "power3.out",
+            ease: 'power3.out',
             onComplete: () => {
-              gsap.set(cards, { clearProps: "will-change" });
+              gsap.set(cards, { clearProps: 'will-change' });
             },
           },
-          "-=0.5"
+          '-=0.5'
         );
       }
     }
@@ -199,9 +199,9 @@ export default function Layanan() {
           opacity: 0,
           y: 30,
           duration: 1.0,
-          ease: "sine.out",
+          ease: 'sine.out',
         },
-        "-=0.5"
+        '-=0.5'
       );
     }
 
@@ -214,6 +214,7 @@ export default function Layanan() {
 
   return (
     <section
+      id="layanan"
       ref={sectionRef}
       className="relative min-h-screen bg-white pt-16 lg:pt-24 text-neutral-800 font-open-sans"
     >
@@ -233,7 +234,7 @@ export default function Layanan() {
 
         <div
           ref={gridContainerRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {servicesData.map((service, index) => {
             return (
@@ -241,15 +242,15 @@ export default function Layanan() {
                 key={index}
                 className="bg-orange-50 rounded-lg shadow-xl overflow-hidden flex flex-col items-center p-6 service-layanan-card"
               >
-                <div className="relative w-full h-40 mb-6 rounded-md overflow-hidden">
+                <div className="relative w-full h-56 mb-6 rounded-md overflow-hidden">
                   <Image
                     src={service.image}
                     alt={service.name}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: 'cover' }}
                     onError={(e) => {
-                      e.currentTarget.src = "/placeholder-image.webp";
+                      e.currentTarget.src = '/placeholder-image.webp';
                     }}
                   />
                 </div>
@@ -305,7 +306,7 @@ export default function Layanan() {
         onClick={scrollToTop}
         className="fixed bottom-8 right-8 bg-yellow-400 hover:bg-yellow-500 text-black p-3 rounded-full shadow-lg z-20"
         aria-label="Kembali ke atas"
-        style={{ opacity: 0, pointerEvents: "none" }}
+        style={{ opacity: 0, pointerEvents: 'none' }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

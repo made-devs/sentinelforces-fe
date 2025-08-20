@@ -118,6 +118,7 @@ export default function WorkProcessSection() {
 
   return (
     <section
+      id="proses"
       className="py-16 lg:py-24 font-open-sans relative overflow-hidden"
       style={{
         backgroundImage: "url('/security7.webp')",

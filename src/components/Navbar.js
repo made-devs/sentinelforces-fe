@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   Bars3Icon,
   XMarkIcon,
   ChevronDownIcon,
-} from "@heroicons/react/24/outline";
+} from '@heroicons/react/24/outline';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,30 +16,30 @@ export default function Navbar() {
   const timeoutIdRef = useRef(null);
 
   const navLinksData = [
-    { name: "Beranda", href: "/" },
-    { name: "Tentang Kami", href: "/tentang-kami" },
+    { name: 'Beranda', href: '/' },
+    { name: 'Tentang Kami', href: '/tentang-kami' },
     {
-      name: "Layanan",
-      href: "#",
+      name: 'Layanan',
+      href: '#',
       submenu: [
         {
-          name: "Jasa Outsourcing Security",
-          href: "/outsourcing-security",
+          name: 'Jasa Outsourcing Security',
+          href: '/outsourcing-security',
         },
-        { name: "Jasa Bodyguard", href: "/bodyguard" },
+        { name: 'Jasa Bodyguard', href: '/bodyguard' },
         {
-          name: "Jasa Pengamanan Konser atau Event",
-          href: "/event-security",
+          name: 'Jasa Pengamanan Konser atau Event',
+          href: '/event-security',
         },
-        {
-          name: "Pelatihan Outsourcing Security",
-          href: "/pelatihan-security",
-        },
+        // {
+        //   name: "Pelatihan Outsourcing Security",
+        //   href: "/pelatihan-security",
+        // },
       ],
     },
-    { name: "Gallery", href: "/gallery" },
-    { name: "Kontak", href: "/kontak" },
-    { name: "Blog", href: "/blog" },
+    { name: 'Gallery', href: '/gallery' },
+    { name: 'Kontak', href: '/kontak' },
+    { name: 'Blog', href: '/blog' },
   ];
 
   useEffect(() => {
@@ -65,9 +65,9 @@ export default function Navbar() {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
       if (timeoutIdRef.current) clearTimeout(timeoutIdRef.current);
     };
   }, [openDropdown]);
@@ -134,7 +134,7 @@ export default function Navbar() {
               className="relative"
               onMouseEnter={() => handleMouseEnterItem(item.name)}
               onMouseLeave={handleMouseLeaveArea}
-              ref={(el) => (dropdownRefs.current[item.name + "_wrapper"] = el)}
+              ref={(el) => (dropdownRefs.current[item.name + '_wrapper'] = el)}
             >
               <Link
                 id={`nav-item-${item.name}`}
@@ -151,7 +151,7 @@ export default function Navbar() {
                 {item.submenu && (
                   <ChevronDownIcon
                     className={`w-4 h-4 ml-1 transition-transform duration-200 ${
-                      openDropdown === item.name ? "rotate-180" : ""
+                      openDropdown === item.name ? 'rotate-180' : ''
                     }`}
                   />
                 )}

@@ -1,29 +1,32 @@
-// Tidak perlu 'use client' karena tidak ada Hooks atau interaktivitas sisi klien (GSAP dll sudah dihapus)
-
+// Tidak perlu 'use client' karena tidak ada Hooks atau interaktivitas sisi klien
 import React from 'react';
-import Link from 'next/link'; // <-- Import Link dari next/link
-import Image from 'next/image'; // <-- Import Image dari next/image
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import Link from 'next/link';
+import Image from 'next/image';
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaTiktok,
+} from 'react-icons/fa';
 
 export default function FooterOnly() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer>
+    <footer className="relative bg-black text-gray-300 font-open-sans">
       {/* Konten Footer Utama */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-[2]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center md:text-left">
           {/* Kolom 1: Logo & Tagline */}
           <div className="flex flex-col items-center md:items-start">
-            {/* Menggunakan komponen Image dari next/image */}
             <Image
               src="/logo.webp"
               alt="Sentinel Forces Logo"
-              width={100} // <-- Sesuaikan lebar asli logo Anda
-              height={64} // <-- Sesuaikan tinggi asli logo Anda (misal 64px untuk h-16)
-              className="mb-4" // Kelas mb-4 tetap di Image
+              width={100}
+              height={64}
+              className="mb-4"
             />
-            <h5 className="text-base font-bold">Sentinel Forces</h5>
+            <h5 className="text-base font-bold text-white">Sentinel Forces</h5>
             <p className="text-sm">
               Garda Terdepan dalam Keamanan Profesional Anda.
             </p>
@@ -36,7 +39,6 @@ export default function FooterOnly() {
             </h3>
             <ul className="space-y-3">
               <li>
-                {/* Menggunakan Link untuk navigasi internal */}
                 <Link
                   href="/"
                   className="hover:text-yellow-400 transition-colors duration-300"
@@ -45,34 +47,30 @@ export default function FooterOnly() {
                 </Link>
               </li>
               <li>
-                {/* Menggunakan Link untuk navigasi internal */}
                 <Link
-                  href="/layanan"
+                  href="/#layanan"
                   className="hover:text-yellow-400 transition-colors duration-300"
                 >
                   Layanan
                 </Link>
               </li>
               <li>
-                {/* Menggunakan Link untuk navigasi internal */}
                 <Link
-                  href="/proses"
+                  href="/#proses"
                   className="hover:text-yellow-400 transition-colors duration-300"
                 >
                   Proses Kerja
                 </Link>
               </li>
               <li>
-                {/* Menggunakan Link untuk navigasi internal */}
                 <Link
-                  href="/testimoni"
+                  href="/#testimoni"
                   className="hover:text-yellow-400 transition-colors duration-300"
                 >
                   Testimoni
                 </Link>
               </li>
               <li>
-                {/* Menggunakan Link untuk navigasi internal */}
                 <Link
                   href="/kontak"
                   className="hover:text-yellow-400 transition-colors duration-300"
@@ -90,7 +88,7 @@ export default function FooterOnly() {
             </h3>
             <ul className="space-y-3">
               <li>
-                Telepon: {/* <a> untuk link eksternal (tel:) tetap digunakan */}
+                Telepon:
                 <a
                   href="tel:+6282210000522"
                   className="hover:text-yellow-400 transition-colors duration-300"
@@ -99,8 +97,7 @@ export default function FooterOnly() {
                 </a>
               </li>
               <li>
-                Email:{' '}
-                {/* <a> untuk link eksternal (mailto:) tetap digunakan */}
+                Email:
                 <a
                   href="mailto:sentinelforcesofficial@gmail.com"
                   className="hover:text-yellow-400 transition-colors duration-300"
@@ -121,7 +118,6 @@ export default function FooterOnly() {
               Ikuti Kami
             </h3>
             <div className="flex justify-center md:justify-start space-x-4 mb-8">
-              {/* <a> untuk link eksternal (media sosial) tetap digunakan */}
               <a
                 href="https://facebook.com/sentinelforces"
                 target="_blank"
@@ -148,6 +144,15 @@ export default function FooterOnly() {
                 className="text-gray-300 hover:text-yellow-400 transition-colors duration-300"
               >
                 <FaLinkedinIn className="h-6 w-6" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@sentinelforces.id"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Tiktok"
+                className="text-gray-300 hover:text-yellow-400 transition-colors duration-300"
+              >
+                <FaTiktok className="h-6 w-6" />
               </a>
             </div>
             <p className="text-sm">

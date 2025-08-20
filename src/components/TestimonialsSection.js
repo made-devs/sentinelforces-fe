@@ -84,6 +84,7 @@ export default function TestimonialsSection() {
 
   return (
     <section
+      id="testimoni"
       ref={sectionRef}
       className="bg-white py-16 lg:py-24 font-open-sans"
     >
